@@ -1,0 +1,7 @@
+{
+  "name": "QrAppKWM",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
