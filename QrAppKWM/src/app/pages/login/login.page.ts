@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -20,12 +20,13 @@ export class LoginPage {
   ];
 
   constructor(
-    private formBuilder: FormBuilder
-    , private router: Router, private toastController: ToastController) {
+    private formBuilder: FormBuilder,
+    private router: Router, 
+    private toastController: ToastController) {
     
     this.loginFormulario = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required]]
     });
   }
 
@@ -34,21 +35,30 @@ export class LoginPage {
     if (this.loginFormulario.valid) {
       const username = this.loginFormulario.get('username')?.value;
       const password = this.loginFormulario.get('password')?.value;
+
+      const usuarioValido = this.usuarios.find(user => user.username === username && user.password === password);
   
       
-      const usuarioValido = this.usuarios.find(user => user.username === username && user.password === password);
+      
   
       if (usuarioValido) {
         console.log('Inicio de sesión exitoso');
         alert('Inicio de sesión exitoso');
         
-        this.router.navigate(['/home']);
+        const navigationExtras: NavigationExtras = {
+          state: {
+            usuario: usuarioValido
+          }
+        };
+
+        await this.router.navigate(['/home'], navigationExtras);
         
         const toast = await this.toastController.create({
-          message: 'Buenos dias, ${username}!',
+          message: `Buenos días, ${usuarioValido?.nombreCompleto}!`, 
           duration: 2000,
           position: 'top'
         });
+        
         
         toast.present();
 

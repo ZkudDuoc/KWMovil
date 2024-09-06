@@ -25,3 +25,34 @@
 #container a {
   text-decoration: none;
 }
+
+.credencial {
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: #2a2a2a; /* Fondo gris oscuro */
+  color: var(--ion-text-color);
+  max-width: 300px;
+  margin: 0 auto; /* Centra la credencial en la página */
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: 1.1rem;
+  margin: 8px 0;
+}
+
+/* Estilos específicos para modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .credencial {
+    border: 1px solid var(--ion-color-light);
+    box-shadow: 2px 4px 15px rgba(255, 255, 255, 0.1);
+  }
+}
+
