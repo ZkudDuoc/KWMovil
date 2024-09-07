@@ -16,7 +16,8 @@ export class LoginPage {
   usuarios = [
     { username: 'Agustin', password: 'agustin' , nombreCompleto: 'Agustin Cavieres', semestre: '4 semestre' , carrera: 'Informatica' , seccion: '008-V' , jornada: 'Vespertino'},
     { username: 'Nicolas', password: 'nicolas' , nombreCompleto: 'Nicolas Saavedra', semestre: '2 semestre' , carrera: 'Mecanica' , seccion: '013-D' , jornada: 'Diurno'},
-    { username: 'Benja', password: 'benja' , nombreCompleto: 'Benjamin Morales', semestre: '8 semestre' , carrera: 'Medicina' , seccion: '007-V' , jornada: 'Vespertino'}
+    { username: 'Benja', password: 'benja' , nombreCompleto: 'Benjamin Morales', semestre: '8 semestre' , carrera: 'Medicina' , seccion: '007-V' , jornada: 'Vespertino'},
+    { username: 'Anais', password: 'anais', nombreCompleto: 'Anais Morales',  semestre: '1 semestre' , carrera: 'Dictadora' , seccion: '000-V' , jornada: 'ALL DAY'}
   ];
 
   constructor(
