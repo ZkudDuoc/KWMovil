@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Credencial del Estudiante</ion-title>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,20 @@
     <p><strong>Sección:</strong> {{ usuario.seccion }}</p>
     <p><strong>Jornada:</strong> {{ usuario.jornada }}</p>
   </div>
+  <div class="bottom-navigation">
+    
+    <ion-button fill="clear" class="nav-item" routerLink="/search">
+      <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+    </ion-button>
+    <div class="center-item">
+      <ion-button class="center-button" routerLink="/scan">
+        <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
+      </ion-button>
+    </div>
+    
+    <ion-button fill="clear" class="nav-item" routerLink="/profile">
+      <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>
-
-
 
