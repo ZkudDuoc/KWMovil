@@ -1,27 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title>
+      <div class="header-content">
+        <span class="qr-text">QR'</span>
+        <span class="asistance-text">Asistance</span>
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <form [formGroup]="loginFormulario" (ngSubmit)="validacionLogin()">  
-    <ion-item>
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input type="text" formControlName="username"></ion-input>
-    </ion-item>
-    <div *ngIf="loginFormulario.get('username')?.invalid && loginFormulario.get('username')?.touched" class="error-message">
-      El usuario es requerido.
-    </div>
+<ion-content class="ion-padding login-page">
+  <div class="login-container">
+    <ion-card>
+      <ion-card-content>
+        <form [formGroup]="loginFormulario" (ngSubmit)="validacionLogin()">
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input type="text" formControlName="username"></ion-input>
+          </ion-item>
+          <div *ngIf="loginFormulario.get('username')?.invalid && loginFormulario.get('username')?.touched" class="error-message">
+            El usuario es requerido.
+          </div>
 
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
-    <div *ngIf="loginFormulario.get('password')?.invalid && loginFormulario.get('password')?.touched" class="error-message">
-      La contraseña debe tener al menos 6 caracteres.
-    </div>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div *ngIf="loginFormulario.get('password')?.invalid && loginFormulario.get('password')?.touched" class="error-message">
+            La contraseña es requerida.
+          </div>
 
-    <ion-button expand="full" type="submit" [disabled]="loginFormulario.invalid">Ingresar</ion-button>
-  </form>
+          <ion-button expand="full" type="submit" [disabled]="loginFormulario.invalid">Ingresar</ion-button>
+        </form>
+        <div class="forgot-password">
+          <a (click)="recuperarPassword()">Cambia tu contraseña acá</a>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
+
