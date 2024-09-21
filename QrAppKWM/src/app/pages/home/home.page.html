@@ -1,15 +1,36 @@
+<ion-menu side="end" content-id="main-content" style="--background: #6f0ce0;">
+  <ion-header>
+    <ion-toolbar style="--background: #6f0ce0;"> <!-- Cambia el color de fondo aquí -->
+      <ion-title style="color: white;">Opciones</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item button (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<!-- Contenido principal -->
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="--background: #6f0ce0;"> <!-- Cambia el color de fondo aquí -->
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button> <!-- Botón para abrir el menú -->
+    </ion-buttons>
     <ion-title>
       <div class="header-content">
-        <span class="qr-text">QR'</span>
+        <span class="qr-text">QR</span>
         <span class="asistance-text">Asistance</span>
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content id="main-content" class="ion-padding">
   <div class="credencial">
     <h2>{{ usuario.nombreCompleto }}</h2>
     <p><strong>Semestre:</strong> {{ usuario.semestre }}</p>
@@ -23,14 +44,13 @@
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
     </ion-button>
     <div class="center-item">
-      <ion-button class="center-button" routerLink="/scan">
+      <ion-button class="center-button" fill="clear" routerLink="/scan">
         <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
       </ion-button>
     </div>
     
-    <ion-button fill="clear" class="nav-item" routerLink="/profile">
-      <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+    <ion-button fill="clear" class="nav-item" routerLink="/horario">
+      <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
     </ion-button>
   </div>
 </ion-content>
-

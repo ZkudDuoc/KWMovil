@@ -278,6 +278,14 @@
   ion-footer {
     --background: purple;  /* Cambia el color de fondo del footer */
   }
+  ion-menu {
+    ion-header {
+      ion-toolbar {
+        --background: purple !important; // Forzar el color
+      }
+    }
+  }
+  
 }
 
 

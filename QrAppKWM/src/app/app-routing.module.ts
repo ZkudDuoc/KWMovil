@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'recu-contra',
     loadChildren: () => import('./pages/recu-contra/recu-contra.module').then( m => m.RecuContraPageModule)
+  },  {
+    path: 'horario',
+    loadChildren: () => import('./pages/horario/horario.module').then( m => m.HorarioPageModule)
   },
+
 ];
 
 @NgModule({
