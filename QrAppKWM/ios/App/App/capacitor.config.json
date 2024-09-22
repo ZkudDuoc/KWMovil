@@ -1,0 +1,12 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "QrAppKWM",
+	"webDir": "www",
+	"packageClassList": [
+		"AppPlugin",
+		"CAPCameraPlugin",
+		"HapticsPlugin",
+		"KeyboardPlugin",
+		"StatusBarPlugin"
+	]
+}
