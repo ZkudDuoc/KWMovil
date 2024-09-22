@@ -1,25 +1,7 @@
-<ion-menu side="end" content-id="main-content" style="--background: #6f0ce0;">
-  <ion-header>
-    <ion-toolbar style="--background: #6f0ce0;"> <!-- Cambia el color de fondo aquí -->
-      <ion-title style="color: white;">Opciones</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
-    <ion-list>
-      <ion-item button (click)="logout()">
-        <ion-icon slot="end" name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesión</ion-label>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<!-- Contenido principal -->
 <ion-header>
-  <ion-toolbar style="--background: #6f0ce0;"> <!-- Cambia el color de fondo aquí -->
+  <ion-toolbar style="--background: #6f0ce0;">
     <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button> <!-- Botón para abrir el menú -->
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
       <div class="header-content">
@@ -31,15 +13,15 @@
 </ion-header>
 
 <ion-content id="main-content" class="ion-padding">
-  <div class="credencial">
+  <div class="credencial" *ngIf="usuario">
     <h2>{{ usuario.nombreCompleto }}</h2>
-    <p><strong>Semestre:</strong> {{ usuario.semestre }}</p>
-    <p><strong>Carrera:</strong> {{ usuario.carrera }}</p>
-    <p><strong>Sección:</strong> {{ usuario.seccion }}</p>
-    <p><strong>Jornada:</strong> {{ usuario.jornada }}</p>
+    <p><strong>Semestre:</strong> {{ usuario.semestre || 'No disponible' }}</p>
+    <p><strong>Carrera:</strong> {{ usuario.carrera || 'No disponible' }}</p>
+    <p><strong>Sección:</strong> {{ usuario.seccion || 'No disponible' }}</p>
+    <p><strong>Jornada:</strong> {{ usuario.jornada || 'No disponible' }}</p>
   </div>
+  
   <div class="bottom-navigation">
-    
     <ion-button fill="clear" class="nav-item" routerLink="/search">
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
     </ion-button>
@@ -48,7 +30,6 @@
         <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
       </ion-button>
     </div>
-    
     <ion-button fill="clear" class="nav-item" routerLink="/horario">
       <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
     </ion-button>
