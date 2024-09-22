@@ -1,5 +1,21 @@
+<ion-menu side="end" content-id="main-content" style="--background:orange;">
+  <ion-header>
+    <ion-toolbar style="--background: orange;">
+      <ion-title style="color: white;">Opciones</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item button (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
 <ion-header>
-  <ion-toolbar style="--background: #6f0ce0;">
+  <ion-toolbar style="--background: orange;">
     <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -20,10 +36,29 @@
     <p><strong>Sección:</strong> {{ usuario.seccion || 'No disponible' }}</p>
     <p><strong>Jornada:</strong> {{ usuario.jornada || 'No disponible' }}</p>
   </div>
-  
-  <div class="bottom-navigation">
-    <ion-button fill="clear" class="nav-item" routerLink="/search">
-      <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+
+  <ion-card *ngIf="clasesDelDia.length > 0">
+    <ion-card-header>
+      <ion-card-title>Clases de Hoy</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ul>
+        <li *ngFor="let clase of clasesDelDia">
+          {{ clase.hora }} - {{ clase.clase }}
+        </li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="clasesDelDia.length === 0">
+    <ion-card-header>
+      <ion-card-title>No hay clases hoy</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <div class="bottom-navigation" style="background-color: orange;">
+    <ion-button fill="clear" class="nav-item" routerLink="/asistencia">
+      <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
     </ion-button>
     <div class="center-item">
       <ion-button class="center-button" fill="clear" (click)="openCamera()">
@@ -31,7 +66,7 @@
       </ion-button>
     </div>
     <ion-button fill="clear" class="nav-item" routerLink="/horario">
-      <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
+      <ion-icon slot="icon-only" name="time-outline"></ion-icon>
     </ion-button>
   </div>
 </ion-content>

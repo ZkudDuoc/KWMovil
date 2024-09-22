@@ -1,0 +1,62 @@
+ion-card {
+    margin: 10px 0;
+    border-radius: 10px; 
+    border: 1.5px solid orange; 
+    background-color: #ffffff; 
+    transform: scale(0.95); 
+  }
+  
+ 
+  ion-card-header {
+    background-color: orange; 
+    padding: 8px; 
+    border-radius: 10px 10px 0 0; 
+  }
+  
+  ion-card-title {
+    font-size: 1.4rem; 
+    font-weight: 600; 
+    color: #ffffff; 
+    text-align: center; 
+  }
+  
+ 
+  ion-card-content {
+    font-size: 0.5rem;
+    padding: 10px; 
+  }
+  
+  ion-card-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ion-card-content li {
+    margin: 1px 0;
+    color: #656262; 
+    font-weight: 500; 
+    border-bottom: 1px solid #656262; 
+    padding-bottom: 4px; 
+  }
+ 
+.horario-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    margin-bottom: 10px;
+  }
+  
+  .hora {
+    flex: 1;
+    font-size: 0.9rem;
+    margin-right: 0.1px;
+  }
+  
+  .clase {
+    flex: 2;
+    font-size: 1rem;
+    
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
+  

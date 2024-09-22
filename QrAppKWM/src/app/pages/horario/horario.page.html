@@ -1,8 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="--background: #6f0ce0;">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+  <ion-toolbar style="--background: orange;">
     <ion-title>Horario</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="/home"></ion-back-button>
@@ -13,26 +10,20 @@
 
 
 <ion-content id="main-content" [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Horario</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div *ngFor="let dia of ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado']">
-    <ion-card style="border: 0.5px solid #6f0ce0; background-color: transparent; color: rgb(154, 150, 150); border-radius: 10px;">
-      
+    <ion-card style="border: 2px solid orange;">
       <ion-card-header>
         <ion-card-title>{{ dia.charAt(0).toUpperCase() + dia.slice(1) }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ul>
-          <li *ngFor="let item of horario[dia]">
-            {{ item.hora }} - {{ item.clase }}
+          <li *ngFor="let item of horario[dia]" class="horario-item">
+            <span class="hora">{{ item.hora }}</span>
+            <span class="clase">{{ item.clase }}</span>
           </li>
-          <li *ngIf="horario[dia].length === 0">No hay clases</li>
         </ul>
       </ion-card-content>
     </ion-card>
   </div>
 </ion-content>
+

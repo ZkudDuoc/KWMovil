@@ -1,0 +1,39 @@
+ion-card {
+    margin: 15px 0; 
+    border-radius: 15px; 
+    border: 2px solid orange; 
+    background-color: #ffffff; 
+  }
+  
+ 
+  ion-card-header {
+    background-color: orange; 
+    padding: 10px;
+    border-radius: 15px 15px 0 0; 
+  }
+  
+  ion-card-title {
+    font-size: 1.0rem; 
+    font-weight: 600; 
+    color: #ffffff; 
+  }
+  
+
+  ion-card-content {
+    font-size: 1.8rem; 
+    padding: 15px; 
+  }
+  
+  ion-card-content p {
+    margin: 5px 0;
+    font-size: 1.0rem;
+    color: #656262; 
+  }
+  
+ 
+  p strong {
+    font-weight: bold; 
+    font-size: 1.0rem ;
+    color: #656262; 
+  }
+  

@@ -1,95 +1,96 @@
 .header-content {
-    display: flex;
-    align-items: center;
-  }
-  
-  .qr-text {
-    font-size: 1.5rem;  /* Ajusta el tamaño del texto según tus necesidades */
-    margin-right: 4px;  /* Ajusta el espacio entre "QR" y "Asistance" */
-  }
-  
-  .asistance-text {
-    font-size: 1.5rem;  /* Ajusta el tamaño del texto según tus necesidades */
-    color: purple;
-    border: 2px solid purple;  /* Contorno morado */
-    border-radius: 4px;  /* Bordes redondeados opcionales */
-    padding: 2px 4px;  /* Ajusta el padding interno si es necesario */
-    background-color: white;  /* Fondo blanco para resaltar el contorno */
-  }
-  ion-footer {
-    --background: purple;  /* Cambia el color de fondo del footer */
-  }
+  display: flex;
+  align-items: center;
+}
 
-  ion-toolbar {
-    --background: purple;  /* Cambia el color de fondo del toolbar dentro del footer */
-    --color: white;        /* Cambia el color del texto dentro del toolbar para que contraste con el fondo morado */
-  }
-  
-  ion-title {
-    display: flex;
-    justify-content: center;
-    width: 100%;  /* Asegúrate de que ocupe todo el ancho del toolbar */
-  }
+.qr-text {
+  font-size: 1.5rem;
+  margin-right: 4px;
+}
 
-  ion-header {
-    --padding-start: 0;
-    --padding-end: 0;
-  }
-  
-  ion-toolbar {
-    --padding-start: 90px;
-    --padding-end: 90px;
-  }
+.asistance-text {
+  font-size: 1.5rem;
+  color: purple;
+  border: 2px solid purple;
+  border-radius: 4px;
+  padding: 2px 4px;
+  background-color: white;
+}
 
-  .login-page {
-    background: linear-gradient(135deg, #6a0572, #aa00ff); /* Gradiente de fondo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .login-container {
-    width: 100%;
-    max-width: 400px; /* Limita el ancho del formulario */
-    padding: 20px;
-  }
-  
-  ion-card {
-    background-color: #f3f3f3ce;
-    border-radius: 15px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  ion-item {
-    --background: #fff;
-    --border-radius: 10px;
-    margin-bottom: 20px;
-  }
-  
-  ion-button {
-    --background: #4a148c;
-    --border-radius: 20px;
-    --box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 12px;
-    margin-left: 10px;
-  }
-  
-  .login-container ion-card {
-    padding: 15px;
-  }
-  
-  ion-label {
-    color: #6a0572; /* Color del texto en los labels */
-  }
-  
-  ion-input {
-    color: #000;
-  }
-  
+ion-footer {
+  --background: orange;
+}
 
-  
+ion-toolbar {
+  --background: purple;
+  --color: white;
+  --padding-start: 90px;
+  --padding-end: 90px;
+}
+
+ion-title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+ion-header {
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.login-page {
+  background: linear-gradient(135deg, #6a0572, #aa00ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+ion-card {
+  background-color: #676363; /* Color sólido */
+  border-radius: 15px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  padding: 15px; /* Aquí ya está incluido */
+}
+
+ion-item {
+  --background: #fff;
+  --border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+ion-button {
+  --background: orange;
+  --border-radius: 20px;
+  --box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s;
+
+  &:hover {
+    --background: #6a0572; /* Color al pasar el mouse */
+  }
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+ion-label {
+  color: #6a0572;
+}
+
+ion-input {
+  color: #000;
+
+  // Estilos opcionales para los bordes
+  --border-radius: 10px;
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
