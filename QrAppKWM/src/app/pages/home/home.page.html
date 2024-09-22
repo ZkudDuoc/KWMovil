@@ -4,7 +4,6 @@
       <ion-title style="color: white;">Opciones</ion-title>
     </ion-toolbar>
   </ion-header>
-
   <ion-content>
     <ion-list>
       <ion-item button (click)="logout()">
@@ -14,7 +13,6 @@
     </ion-list>
   </ion-content>
 </ion-menu>
-
 
 <ion-header>
   <ion-toolbar style="--background: orange;">
@@ -31,14 +29,14 @@
 </ion-header>
 
 <ion-content id="main-content" class="ion-padding">
-  <div class="credencial">
+  <div class="credencial" *ngIf="usuario">
     <h2>{{ usuario.nombreCompleto }}</h2>
-    <p><strong>Semestre:</strong> {{ usuario.semestre }}</p>
-    <p><strong>Carrera:</strong> {{ usuario.carrera }}</p>
-    <p><strong>Sección:</strong> {{ usuario.seccion }}</p>
-    <p><strong>Jornada:</strong> {{ usuario.jornada }}</p>
+    <p><strong>Semestre:</strong> {{ usuario.semestre || 'No disponible' }}</p>
+    <p><strong>Carrera:</strong> {{ usuario.carrera || 'No disponible' }}</p>
+    <p><strong>Sección:</strong> {{ usuario.seccion || 'No disponible' }}</p>
+    <p><strong>Jornada:</strong> {{ usuario.jornada || 'No disponible' }}</p>
   </div>
-  
+
   <ion-card *ngIf="clasesDelDia.length > 0">
     <ion-card-header>
       <ion-card-title>Clases de Hoy</ion-card-title>
@@ -51,7 +49,7 @@
       </ul>
     </ion-card-content>
   </ion-card>
-  
+
   <ion-card *ngIf="clasesDelDia.length === 0">
     <ion-card-header>
       <ion-card-title>No hay clases hoy</ion-card-title>
@@ -63,7 +61,7 @@
       <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
     </ion-button>
     <div class="center-item">
-      <ion-button class="center-button" fill="clear" routerLink="/scan">
+      <ion-button class="center-button" fill="clear" (click)="openCamera()">
         <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
       </ion-button>
     </div>
