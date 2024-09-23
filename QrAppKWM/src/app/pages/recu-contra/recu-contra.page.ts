@@ -11,7 +11,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class RecuContraPage {
   
-  username: string = '';  // Asegúrate de agregar esta propiedad
+  username: string = '';  
   recuperarFormulario: FormGroup;
 
   constructor(
@@ -29,14 +29,15 @@ export class RecuContraPage {
   async navigateToLogin() {
     const username = this.recuperarFormulario.get('username')?.value.trim();
     const newPassword = this.recuperarFormulario.get('newPassword')?.value;
-    
     const actualizacionExitosa = this.usuarioService.actualizarPassword(username, newPassword);
+
     if (actualizacionExitosa) {
       const toast = await this.toastController.create({
         message: 'Contraseña actualizada exitosamente!',
         duration: 2000,
         position: 'top'
       });
+      
       toast.present();
       this.router.navigate(['/login']);
     } else {

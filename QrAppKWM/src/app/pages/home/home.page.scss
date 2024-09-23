@@ -11,66 +11,47 @@
     margin: 0 auto;
   }
 
-  // Estilos para la card de clases del día
+  .header-content {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;             
+    margin-left: -16px;      
+  }
+  
+  .qr-text {
+    font-size: 1.5rem;
+    margin-right: 4px;
+    text-align: center; 
+  }
+  
+  .asistance-text {
+    font-size: 1.5rem;
+    color: rgb(255, 136, 0);
+    border: 2px solid rgb(255, 136, 0); 
+    border-radius: 4px;
+    padding: 2px 4px;
+    background-color: white;
+    text-align: center; 
+  }
+  
   ion-card {
     border-radius: 12px;
     margin: 10px 0;
-    background-color: #5a5a5a; // Color de fondo para la card
-    color: white; // Color del texto
+    background-color: #5a5a5a; 
+    color: white; 
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
   }
 
   ion-card-header {
-    background-color: #777; // Fondo del encabezado
-    color: white; // Color del texto
+    background-color: #777; 
+    color: white; 
   }
 
   ion-card-title {
-    font-size: 1.2rem; // Tamaño de fuente del título
+    font-size: 1.2rem; 
   }
 
-  #container {
-    text-align: center;
-  
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-  
-  #container p {
-    font-size: 16px;
-    line-height: 22px;
-  
-    color: #8c8c8c;
-  
-    margin: 0;
-  }
-  
-  #container a {
-    text-decoration: none;
-  }
-  
-  .middle-button {
-    width: 60px; 
-    height: 60px;
-    border-radius: 50%;
-    background-color: #d7d8df;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 24px;
-    position: relative;
-    top: -20px;
-  }
-  
   .bottom-navigation {
     display: flex;
     justify-content: space-around;
@@ -100,7 +81,7 @@
   }
   
   .center-button {
-    background-color: rgb(251, 187, 67);
+    background-color: rgb(244, 145, 32);
     border-radius: 50%;
     padding: 15px;
     display: flex;
@@ -108,85 +89,5 @@
     align-items: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     color: rgb(0, 0, 0);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  .credencial {
-    border: 1px solid var(--ion-color-medium);
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-    box-shadow: 2px 4px 15px rgb(0, 0, 0);
-    background-color: #fcfcfc; 
-    color: var(--ion-text-color);
-    max-width: 300px;
-    margin: 0 auto; 
-  }
-
-
-  ion-card {
-    border-radius: 12px;
-    margin: 10px 0;
-    background-color: #f2f2f2;
-    color: black;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  ion-card-header {
-    background-color: #ddd; 
-    color: black;
-  }
-
-  ion-card-title {
-    font-size: 1.2rem;
-  }
-
-  ion-header {
-    --padding-start: 0;
-    --padding-end: 0;
-  }
-  
-  ion-toolbar {
-    --padding-start: 75px;
-    --padding-end: 75px;
-    --background: purple; 
-  }
-  
-  ion-title {
-    display: flex;
-    justify-content: center;
-    width: 100%;  
-  }
-
-  .header-content {
-    display: flex;
-    align-items: center;
-  }
-
-  .qr-text {
-    font-size: 1.5rem; 
-    margin-right: 4px; 
-  }
-
-  .asistance-text {
-    font-size: 1.5rem;  
-    color: purple;
-    border: 2px solid purple;  
-    border-radius: 4px;  
-    padding: 2px 4px;
-    background-color: white;  
-  }
-
-  ion-footer {
-    --background: purple; 
-  }
-
-  ion-menu {
-    ion-header {
-      ion-toolbar {
-        --background: purple !important; 
-      }
-    }
   }
 }
