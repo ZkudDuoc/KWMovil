@@ -10,20 +10,20 @@
 
 .asistance-text {
   font-size: 1.5rem;
-  color: purple;
-  border: 2px solid purple;
+  color: rgb(255, 136, 0);
+  border: 2px solid rgb(255, 136, 0); 
   border-radius: 4px;
   padding: 2px 4px;
   background-color: white;
 }
 
 ion-footer {
-  --background: orange;
+  --background: rgb(255, 136, 0); 
 }
 
 ion-toolbar {
-  --background: purple;
-  --color: white;
+  --background: rgb(255, 136, 0); 
+  --color: white; 
   --padding-start: 90px;
   --padding-end: 90px;
 }
@@ -40,7 +40,7 @@ ion-header {
 }
 
 .login-page {
-  background: linear-gradient(135deg, #6a0572, #aa00ff);
+  background: linear-gradient(135deg, #6a0572, #aa00ff); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,26 +54,29 @@ ion-header {
 }
 
 ion-card {
-  background-color: #676363; /* Color sólido */
+  background-color: white;
   border-radius: 15px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  padding: 15px; /* Aquí ya está incluido */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); 
+  padding: 15px; 
+  border: 2px solid rgb(255, 136, 0); 
 }
 
 ion-item {
-  --background: #fff;
+  --background: white;
   --border-radius: 10px;
   margin-bottom: 20px;
+  --border-color: rgb(255, 136, 0);
+  --border-width: 2px;
+  --border-style: solid;
 }
 
 ion-button {
-  --background: orange;
+  --background: rgb(255, 136, 0);
   --border-radius: 20px;
-  --box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
   transition: background 0.3s;
 
   &:hover {
-    --background: #6a0572; /* Color al pasar el mouse */
+    --background: #dc7404; 
   }
 }
 
@@ -84,13 +87,23 @@ ion-button {
 }
 
 ion-label {
-  color: #6a0572;
+  color: rgb(255, 136, 0); 
 }
 
 ion-input {
-  color: #000;
+  color: #000; 
 
-  // Estilos opcionales para los bordes
+ 
   --border-radius: 10px;
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.forgot-password a {
+  color: rgb(255, 136, 0); 
+  text-decoration: underline;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  display: block;
+  text-align: center;
 }

@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 export class UsuarioService {
 
   private usuarios = [
-    { username: 'Agustin', password: 'agustin', nombreCompleto: 'Agustin Cavieres', semestre: '2', carrera: 'Ingeniería', seccion: 'A', jornada: 'Diurna' },
-    { username: 'Nicolas', password: 'nicolas', nombreCompleto: 'Nicolas Saavedra', semestre: '4', carrera: 'Derecho', seccion: 'B', jornada: 'Vespertina' },
-    { username: 'Benja', password: 'benja', nombreCompleto: 'Benjamin Morales', semestre: '3', carrera: 'Medicina', seccion: 'C', jornada: 'Diurna' },
-    { username: 'Anais', password: 'anais', nombreCompleto: 'Anais Morales', semestre: '1', carrera: 'Arquitectura', seccion: 'D', jornada: 'Diurna' }
+    { username: 'Agustin', password: 'agustin', nombreCompleto: 'Agustin Cavieres', semestre: '4', carrera: 'Ingeniería', seccion: '008v', jornada: 'Diurna' },
+    { username: 'Nicolas', password: 'nicolas', nombreCompleto: 'Nicolas Saavedra', semestre: '4', carrera: 'Derecho', seccion: '008v', jornada: 'Vespertina' },
+    { username: 'Benja', password: 'benja', nombreCompleto: 'Benjamin Morales', semestre: '4', carrera: 'Medicina', seccion: '008v', jornada: 'Diurna' },
+    { username: 'Anais', password: 'anais', nombreCompleto: 'Anais Morales', semestre: '0.1', carrera: 'Arquitectura', seccion: '008v', jornada: 'Diurna' }
   ];
 
   constructor() {}

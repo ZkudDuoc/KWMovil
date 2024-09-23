@@ -1,6 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Recuperar Contraseña</ion-title>
+    <ion-title>
+      <div class="header-content">
+        <span class="qr-text">QR'</span>
+        <span class="asistance-text">Asistance</span>
+      </div>
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,22 +20,19 @@
 
     <ion-card-content>
       <form [formGroup]="recuperarFormulario">
-        <!-- Campo para ingresar el nombre de usuario -->
         <ion-item>
           <ion-label position="floating">Nombre de Usuario</ion-label>
-          <ion-input formControlName="username" type="text" ></ion-input>
+          <ion-input formControlName="username" type="text"></ion-input>
         </ion-item>
 
-        <!-- Campo para ingresar la nueva contraseña -->
         <ion-item>
           <ion-label position="floating">Nueva Contraseña</ion-label>
           <ion-input formControlName="newPassword" type="password"></ion-input>
         </ion-item>
 
-        <!-- Botón para recuperar la contraseña -->
-        <ion-button expand="full" color="primary" (click)="navigateToLogin()" [disabled]="recuperarFormulario.invalid">
+        <ion-button expand="full" class="custom-button" (click)="navigateToLogin()" [disabled]="recuperarFormulario.invalid">
           Actualizar Contraseña
-        </ion-button>
+        </ion-button> 
       </form>
     </ion-card-content>
   </ion-card>

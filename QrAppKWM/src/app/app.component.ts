@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Importa Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,9 @@ import { Router } from '@angular/router'; // Importa Router
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private router: Router) {} // Inyecta Router
+  constructor(private router: Router) {} 
 
   logout() {
-    // Lógica para cerrar sesión, como limpiar el token de autenticación
-    // Redirige al login
     this.router.navigate(['/login']);
   }
 }

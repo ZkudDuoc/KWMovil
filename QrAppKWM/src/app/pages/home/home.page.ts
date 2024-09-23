@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';  // Importa Capacitor Camera
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'; 
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';  // 
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  usuario: any = {}; // Inicializar `usuario` como un objeto vacío
+  usuario: any = {};
   horario: { [key: string]: { hora: string; clase: string }[] } = {
     lunes: [
       { hora: '19:01 - 20:20', clase: 'ETICA PARA EL TRABAJO' },
@@ -38,22 +38,19 @@ export class HomePage implements OnInit {
   };
   
   clasesDelDia: { hora: string; clase: string }[] = [];
-  capturedImage: any;  // Para almacenar la imagen capturada
+  capturedImage: any;  
 
   constructor(private router: Router, private usuarioService: UsuarioService) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
-      // Obtener los datos del usuario desde la navegación si están disponibles
       this.usuario = navigation.extras.state['usuario'];
     }
     this.setClasesDelDia();
   }
 
   ngOnInit() {
-    // Si no se reciben datos del usuario, obtener desde el servicio
     if (!this.usuario || !this.usuario.nombreCompleto) {
-      // Como ejemplo, obtenemos el primer usuario de la lista del servicio
-      this.usuario = this.usuarioService.getUsuarios()[0];  // Puedes cambiar esto según tu lógica
+      this.usuario = this.usuarioService.getUsuarios()[0]; 
     }
   }
 
@@ -70,11 +67,10 @@ export class HomePage implements OnInit {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: false,
-        resultType: CameraResultType.Uri, // Puedes usar base64 si quieres el archivo en ese formato
-        source: CameraSource.Camera // Abre la cámara directamente
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera 
       });
 
-      // Guarda la imagen capturada
       this.capturedImage = image.webPath;
       console.log('Imagen capturada:', this.capturedImage);
 
@@ -84,7 +80,6 @@ export class HomePage implements OnInit {
   }
 
   logout() {
-    // Lógica para cerrar sesión y redirigir a la página de login
     this.router.navigate(['/login']);
   }
 }

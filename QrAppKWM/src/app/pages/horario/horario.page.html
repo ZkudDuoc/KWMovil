@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="--background: orange;">
+  <ion-toolbar style="--background: rgb(255, 136, 0);">
     <ion-title>Horario</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="/home"></ion-back-button>
@@ -11,7 +11,7 @@
 
 <ion-content id="main-content" [fullscreen]="true">
   <div *ngFor="let dia of ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado']">
-    <ion-card style="border: 2px solid orange;">
+    <ion-card style="border: 2px solid rgb(255, 136, 0);">
       <ion-card-header>
         <ion-card-title>{{ dia.charAt(0).toUpperCase() + dia.slice(1) }}</ion-card-title>
       </ion-card-header>

@@ -1,0 +1,112 @@
+ion-header {
+  .qr-text {
+    font-size: 1.5rem;
+    margin-right: 4px;
+  }
+  
+  .asistance-text {
+    font-size: 1.5rem;
+    color: rgb(255, 136, 0);
+    border: 2px solid rgb(255, 136, 0); 
+    border-radius: 4px;
+    padding: 2px 4px;
+    background-color: white;
+  }
+    ion-toolbar {
+      --background: rgb(255, 136, 0);  
+      --color: white;                  
+  
+      display: flex;
+      justify-content: center;         
+      align-items: center;             
+  
+      ion-title {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin: 0;                     
+        padding: 0;                   
+        text-align: center;           
+        flex: 1;                      
+      }
+  
+      ion-buttons {
+        position: absolute;
+        left: 16px;                    
+      }
+    }
+  }
+  
+  
+  ion-card {
+    border-radius: 15px;
+    padding: 20px;
+  
+    ion-card-header {
+      text-align: center;
+      color: rgb(252, 248, 252);
+  
+      ion-card-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+  
+    ion-card-content {
+      ion-item {
+        --background: white;
+        --border-radius: 10px;
+        --border-color: rgb(255, 136, 0);
+        --border-width: 2px;
+        --border-style: solid;
+        margin-bottom: 10px;
+  
+        ion-label {
+          color: #000000;
+        }
+  
+        ion-input {
+          --placeholder-color: #6a0572;
+          --color: #000000;
+        }
+      }
+  
+      ion-button {
+        --background: rgb(255, 136, 0);
+        --color: white;
+        --border-radius: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+        padding: 12px;  
+  
+        &:hover {
+          --background: rgb(220, 116, 4); 
+        }
+  
+        &:disabled {
+          --background: rgba(220, 116, 4, 0.5);  
+        }
+      }
+    }
+  }
+  
+  .custom-button {
+    --background: rgb(255, 136, 0);
+    --color: white;
+    --border-radius: 20px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;  
+  
+    &:hover {
+      --background: rgb(220, 116, 4);
+      transform: scale(1.05);  
+    }
+  
+    &:active {
+      transform: scale(0.95);  
+    }
+  
+    &:disabled {
+      --background: rgba(220, 116, 4);
+    }
+  }
+  
