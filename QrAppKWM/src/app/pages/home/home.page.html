@@ -20,7 +20,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      <div class="header-content" >
+      <div class="header-content">
         <span class="qr-text">QR</span>
         <span class="asistance-text">Asistance</span>
       </div>
@@ -30,6 +30,7 @@
 
 <ion-content id="main-content" class="ion-padding">
   <div class="credencial" *ngIf="usuario">
+    <img *ngIf="fotoPerfil" [src]="fotoPerfil" alt="Foto de perfil" style="width: 100px; height: 100px; border-radius: 50%;" />
     <h2>{{ usuario.nombreCompleto }}</h2>
     <p><strong>Semestre:</strong> {{ usuario.semestre || 'No disponible' }}</p>
     <p><strong>Carrera:</strong> {{ usuario.carrera || 'No disponible' }}</p>

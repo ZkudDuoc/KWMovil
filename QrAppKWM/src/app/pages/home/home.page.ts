@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { StorageService } from '../../services/storage.service'; // Importa tu servicio de almacenamiento
+import { PerfilService } from 'src/app/services/perfil.service';
+import axios from 'axios';
 
 @Component({
   selector: 'app-home',
@@ -39,9 +41,10 @@ export class HomePage implements OnInit {
   };
 
   clasesDelDia: { hora: string; clase: string }[] = [];
-  capturedImage: any;  
+  capturedImage: any;
+  fotoPerfil: string = '';  
 
-  constructor(private router: Router, private usuarioService: UsuarioService, private storageService: StorageService) {
+  constructor(private router: Router, private usuarioService: UsuarioService, private perfilService: PerfilService, private storageService: StorageService) {
     this.setClasesDelDia();
   }
 
@@ -54,6 +57,9 @@ export class HomePage implements OnInit {
       // Si no hay usuario en el Storage, podrías usar un usuario por defecto o manejarlo según tu lógica
       this.usuario = this.usuarioService.getUsuarios()[0]; 
     }
+    
+    // Obtener la foto de perfil
+    await this.obtenerFotoPerfil();
   }
 
   setClasesDelDia() {
@@ -78,6 +84,17 @@ export class HomePage implements OnInit {
 
     } catch (error) {
       console.error('Error al capturar imagen', error);
+    }
+  }
+
+  async obtenerFotoPerfil() {
+    try {
+      // Supongamos que esta es la URL de la API que proporciona la foto de perfil
+      const response = await axios.get('https://randomuser.me/api/');
+      const foto = response.data.results[0].picture.large; // Cambia según la estructura de la respuesta de tu API
+      this.fotoPerfil = foto; // Almacena la foto de perfil
+    } catch (error) {
+      console.error('Error al obtener la foto de perfil', error);
     }
   }
 
