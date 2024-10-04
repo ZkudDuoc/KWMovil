@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'; 
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { StorageService } from '../../services/storage.service'; // Importa tu servicio de almacenamiento
 
 @Component({
   selector: 'app-home',
@@ -36,20 +37,21 @@ export class HomePage implements OnInit {
       { hora: '13:00 - 16:40', clase: 'ARQUITECTURA' }
     ]
   };
-  
+
   clasesDelDia: { hora: string; clase: string }[] = [];
   capturedImage: any;  
 
-  constructor(private router: Router, private usuarioService: UsuarioService) {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation && navigation.extras.state) {
-      this.usuario = navigation.extras.state['usuario'];
-    }
+  constructor(private router: Router, private usuarioService: UsuarioService, private storageService: StorageService) {
     this.setClasesDelDia();
   }
 
-  ngOnInit() {
-    if (!this.usuario || !this.usuario.nombreCompleto) {
+  async ngOnInit() {
+    // Cargar usuario desde el Storage
+    const usuarioStored = await this.storageService.get('usuario');
+    if (usuarioStored) {
+      this.usuario = JSON.parse(usuarioStored); // Parsear el JSON para convertirlo en objeto
+    } else {
+      // Si no hay usuario en el Storage, podrías usar un usuario por defecto o manejarlo según tu lógica
       this.usuario = this.usuarioService.getUsuarios()[0]; 
     }
   }
@@ -58,7 +60,7 @@ export class HomePage implements OnInit {
     const dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
     const fechaActual = new Date();
     const diaActual = dias[fechaActual.getDay()];
-    
+
     this.clasesDelDia = this.horario[diaActual] || [];
   }
 
