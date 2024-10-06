@@ -51,14 +51,16 @@ export class HomePage implements OnInit {
   async ngOnInit() {
     // Cargar usuario desde el Storage
     const usuarioStored = await this.storageService.get('usuario');
-    if (usuarioStored) {
-      this.usuario = JSON.parse(usuarioStored); // Parsear el JSON para convertirlo en objeto
-    } else {
-      // Si no hay usuario en el Storage, podrías usar un usuario por defecto o manejarlo según tu lógica
-      this.usuario = this.usuarioService.getUsuarios()[0]; 
-    }
+    console.log('Usuario almacenado recuperado:', usuarioStored); // Agregar este log
     
-    // Obtener la foto de perfil
+    if (usuarioStored) {
+      this.usuario = JSON.parse(usuarioStored); 
+    } else {
+      this.usuario = { nombreCompleto: 'Juan Pérez', semestre: 3, carrera: 'Ingeniería', seccion: 'A', jornada: 'Diurna' };
+      await this.storageService.set('usuario', JSON.stringify(this.usuario));
+      console.log('Usuario por defecto guardado:', this.usuario); // Agregar este log
+    }
+  
     await this.obtenerFotoPerfil();
   }
 

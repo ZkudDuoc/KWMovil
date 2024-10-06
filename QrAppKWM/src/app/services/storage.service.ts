@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; 
 import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
@@ -13,9 +13,10 @@ export class StorageService {
   }
 
   async init() {
-    const storage = await this.storage.create();
-    this._storage = storage;
+    this._storage = await this.storage.create();
+    console.log('Storage inicializado:', this._storage); // Agregar esta línea
   }
+  
 
   // Guardar un valor en el storage
   async set(key: string, value: any): Promise<any> {

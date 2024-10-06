@@ -1,36 +1,6 @@
-<ion-menu side="start" content-id="main-content" style="--background:rgb(255, 136, 0);">
-  <ion-header>
-    <ion-toolbar style="--background: rgb(255, 136, 0);">
-      <ion-title style="color: white;">Opciones</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item button (click)="logout()">
-        <ion-icon slot="start" name="log-out-outline"></ion-icon>
-        <ion-label>Cerrar sesión</ion-label>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<ion-header>
-  <ion-toolbar style="--background: rgb(255, 136, 0);">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      <div class="header-content">
-        <span class="qr-text">QR</span>
-        <span class="asistance-text">Asistance</span>
-      </div>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content id="main-content" class="ion-padding">
   <div class="credencial" *ngIf="usuario">
-    <img *ngIf="fotoPerfil" [src]="fotoPerfil" alt="Foto de perfil" style="width: 100px; height: 100px; border-radius: 50%;" />
+    <img *ngIf="fotoPerfil" [src]="fotoPerfil" alt="Foto de Perfil" style="width: 100px; height: 100px; border-radius: 50%;">
     <h2>{{ usuario.nombreCompleto }}</h2>
     <p><strong>Semestre:</strong> {{ usuario.semestre || 'No disponible' }}</p>
     <p><strong>Carrera:</strong> {{ usuario.carrera || 'No disponible' }}</p>
