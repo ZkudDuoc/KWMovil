@@ -7,6 +7,8 @@ import { StorageService } from '../../services/storage.service';
 import { PerfilService } from 'src/app/services/perfil.service';
 import axios from 'axios';
 import emailjs from 'emailjs-com'; // Importa EmailJS
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-home',
@@ -50,7 +52,8 @@ export class HomePage implements OnInit {
     private router: Router,
     private usuarioService: UsuarioService,
     private perfilService: PerfilService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toastController: ToastController
   ) {
     this.setClasesDelDia();
   }
@@ -84,23 +87,33 @@ export class HomePage implements OnInit {
       if (scanResult.text) {
         const content = scanResult.text;
         console.log('Código escaneado:', content);
-
+  
         const position = await Geolocation.getCurrentPosition();
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-
+  
         const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
         const address = response.data.display_name;
         console.log('Dirección:', address);
-
-        // Envía un correo con las coordenadas y la dirección
-        await this.enviarCorreo(lat, lon, address);
+  
+        // Muestra el toast con la dirección
+        await this.mostrarToast(address);
       } else {
         console.error('No se pudo escanear el código');
       }
     } catch (error) {
       console.error('Error al escanear:', error);
     }
+  }
+  
+  async mostrarToast(direccion: string) {
+    const toast = await this.toastController.create({
+      message: `Dirección: ${direccion}`,
+      duration: 10000, // Duración en milisegundos (10 segundos)
+      position: 'bottom', // Posición del toast (puede ser 'top', 'middle', o 'bottom')
+      color: 'dark', // Color del toast (opcional)
+    });
+    await toast.present();
   }
 
   async enviarCorreo(lat: number, lon: number, address: string) {
@@ -130,6 +143,7 @@ export class HomePage implements OnInit {
       console.error('Error al obtener la foto de perfil', error);
     }
   }
+  
 
   logout() {
     this.router.navigate(['/login']);
