@@ -7,7 +7,6 @@
     <p><strong>Sección:</strong> {{ usuario.seccion || 'No disponible' }}</p>
     <p><strong>Jornada:</strong> {{ usuario.jornada || 'No disponible' }}</p>
   </div>
-
   <ion-card *ngIf="clasesDelDia.length > 0">
     <ion-card-header>
       <ion-card-title>Clases de Hoy</ion-card-title>
@@ -20,19 +19,17 @@
       </ul>
     </ion-card-content>
   </ion-card>
-
   <ion-card *ngIf="clasesDelDia.length === 0">
     <ion-card-header>
       <ion-card-title>No hay clases hoy</ion-card-title>
     </ion-card-header>
   </ion-card>
-
   <div class="bottom-navigation" style="background-color: rgb(255, 136, 0);">
     <ion-button fill="clear" class="nav-item" routerLink="/asistencia">
       <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
     </ion-button>
     <div class="center-item">
-      <ion-button class="center-button" fill="clear" (click)="openCamera()">
+      <ion-button class="center-button" fill="clear" (click)="openCamara()">
         <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
       </ion-button>
     </div>
@@ -41,3 +38,4 @@
     </ion-button>
   </div>
 </ion-content>
+<script src="https://smtpjs.com/v3/smtp.js"></script>

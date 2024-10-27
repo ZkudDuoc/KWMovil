@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { StorageService } from '../../services/storage.service'; // Importa tu servicio de almacenamiento
+import { BarcodeScanner, BarcodeScanResult } from '@ionic-native/barcode-scanner/ngx';
+import { Geolocation } from '@capacitor/geolocation';
+import { StorageService } from '../../services/storage.service';
 import { PerfilService } from 'src/app/services/perfil.service';
 import axios from 'axios';
+import emailjs from 'emailjs-com'; // Importa EmailJS
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-home',
@@ -39,12 +43,18 @@ export class HomePage implements OnInit {
       { hora: '13:00 - 16:40', clase: 'ARQUITECTURA' }
     ]
   };
-
   clasesDelDia: { hora: string; clase: string }[] = [];
   capturedImage: any;
-  fotoPerfil: string = '';  
+  fotoPerfil: string = '';
 
-  constructor(private router: Router, private usuarioService: UsuarioService, private perfilService: PerfilService, private storageService: StorageService) {
+  constructor(
+    private barcodeScanner: BarcodeScanner,
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private perfilService: PerfilService,
+    private storageService: StorageService,
+    private toastController: ToastController
+  ) {
     this.setClasesDelDia();
   }
 
@@ -52,15 +62,15 @@ export class HomePage implements OnInit {
     // Cargar usuario desde el Storage
     const usuarioStored = await this.storageService.get('usuario');
     console.log('Usuario almacenado recuperado:', usuarioStored); // Agregar este log
-    
+
     if (usuarioStored) {
-      this.usuario = JSON.parse(usuarioStored); 
+      this.usuario = JSON.parse(usuarioStored);
     } else {
       this.usuario = { nombreCompleto: 'Juan Pérez', semestre: 3, carrera: 'Ingeniería', seccion: 'A', jornada: 'Diurna' };
       await this.storageService.set('usuario', JSON.stringify(this.usuario));
       console.log('Usuario por defecto guardado:', this.usuario); // Agregar este log
     }
-  
+
     await this.obtenerFotoPerfil();
   }
 
@@ -68,24 +78,58 @@ export class HomePage implements OnInit {
     const dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
     const fechaActual = new Date();
     const diaActual = dias[fechaActual.getDay()];
-
     this.clasesDelDia = this.horario[diaActual] || [];
   }
 
-  async openCamera() {
+  async openCamara() {
     try {
-      const image = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: false,
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera 
-      });
-
-      this.capturedImage = image.webPath;
-      console.log('Imagen capturada:', this.capturedImage);
-
+      const scanResult: BarcodeScanResult = await this.barcodeScanner.scan();
+      if (scanResult.text) {
+        const content = scanResult.text;
+        console.log('Código escaneado:', content);
+  
+        const position = await Geolocation.getCurrentPosition();
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+  
+        const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
+        const address = response.data.display_name;
+        console.log('Dirección:', address);
+  
+        // Muestra el toast con la dirección
+        await this.mostrarToast(address);
+      } else {
+        console.error('No se pudo escanear el código');
+      }
     } catch (error) {
-      console.error('Error al capturar imagen', error);
+      console.error('Error al escanear:', error);
+    }
+  }
+  
+  async mostrarToast(direccion: string) {
+    const toast = await this.toastController.create({
+      message: `Dirección: ${direccion}`,
+      duration: 10000, // Duración en milisegundos (10 segundos)
+      position: 'bottom', // Posición del toast (puede ser 'top', 'middle', o 'bottom')
+      color: 'dark', // Color del toast (opcional)
+    });
+    await toast.present();
+  }
+
+  async enviarCorreo(lat: number, lon: number, address: string) {
+    const templateParams = {
+      from_name: 'appMovile', // Puedes cambiar esto
+      to_name: 'Nico Saavedra',
+      coordinates: `Latitud: ${lat}, Longitud: ${lon}`,
+      address: address,
+    };
+
+    try {
+      // Reemplaza 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', 'YOUR_USER_ID' con tus valores de EmailJS
+      await emailjs.send('service_yrzd448', 'template_wc9leg3', templateParams, 'jOS-iYahM44Okfz-t');
+      console.log('Correo enviado con éxito');
+    } catch (error) {
+      console.error('Error al enviar el correo:', error);
     }
   }
 
@@ -99,6 +143,7 @@ export class HomePage implements OnInit {
       console.error('Error al obtener la foto de perfil', error);
     }
   }
+  
 
   logout() {
     this.router.navigate(['/login']);
