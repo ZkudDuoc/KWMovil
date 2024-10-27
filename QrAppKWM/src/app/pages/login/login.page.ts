@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
+import { AuthService } from '../../services/auth.service'; 
 import { StorageService } from '../../services/storage.service'; // Importar el servicio de storage
 
 @Component({
@@ -11,7 +12,6 @@ import { StorageService } from '../../services/storage.service'; // Importar el 
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-
   loginFormulario: FormGroup;
 
   constructor(
@@ -19,6 +19,7 @@ export class LoginPage {
     private router: Router,
     private toastController: ToastController,
     private usuarioService: UsuarioService,
+    private authService: AuthService, 
     private storageService: StorageService // Inyectar el servicio de storage
   ) {
     this.loginFormulario = this.formBuilder.group({
@@ -35,6 +36,9 @@ export class LoginPage {
       const usuarioValido = usuarios.find(user => user.username === username && user.password === password);
   
       if (usuarioValido) {
+        // Lógica para la autenticación
+        this.authService.login(usuarioValido); 
+
         // Guardar el usuario en el Storage
         await this.storageService.set('usuario', JSON.stringify(usuarioValido));
   
@@ -52,7 +56,6 @@ export class LoginPage {
           position: 'top'
         });
         await toast.present();
-  
       } else {
         const toast = await this.toastController.create({
           message: 'Usuario o contraseña incorrectos',
@@ -70,7 +73,6 @@ export class LoginPage {
       await toast.present();
     }
   }
-  
 
   recuperarPassword() {
     this.router.navigate(['/recu-contra']);

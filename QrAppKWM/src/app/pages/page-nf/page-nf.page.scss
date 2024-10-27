@@ -1,0 +1,81 @@
+ion-header {
+    ion-toolbar {
+      --background: rgb(255, 136, 0);  
+      --color: white;                  
+  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      ion-title {
+        font-size: 1.2rem;  // Tamaño de letra reducido
+        font-weight: 500;   // Grosor de letra reducido
+        color: #ffffff;
+        text-align: left;
+        font-family: 'Roboto', sans-serif; 
+      }
+    }
+  }
+  
+  ion-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f8f8f8;
+  
+    .error-container {
+      max-width: 350px;
+      width: 100%;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: #ffffff;
+      border: 2px solid rgb(255, 136, 0);
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      margin-left: 15px; 
+  
+      h1 {
+        font-size: 2rem;  // Tamaño de letra reducido
+        color: rgb(255, 136, 0);
+        font-weight: bold;
+        margin: 20px 0;
+      }
+  
+      p {
+        font-size: 1rem;  // Tamaño de letra reducido
+        color: black; 
+        margin: 10px 0 20px;
+      }
+  
+      .error-image {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+        object-fit: contain;
+      }
+  
+      ion-button {
+        --background: rgb(255, 136, 0);
+        --color: white;
+        --border-radius: 20px;
+        font-weight: bold;
+        padding: 12px;
+        margin-top: 20px;
+        transition: background 0.3s, transform 0.2s;
+  
+        &:hover {
+          --background: rgb(220, 116, 4); 
+          transform: scale(1.05);
+        }
+  
+        &:active {
+          transform: scale(0.95);
+        }
+  
+        &:disabled {
+          --background: rgba(220, 116, 4, 0.5);
+        }
+      }
+    }
+  }
+  
