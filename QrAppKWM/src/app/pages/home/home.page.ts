@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'; 
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { StorageService } from '../../services/storage.service'; // Importa tu servicio de almacenamiento
+import { PerfilService } from 'src/app/services/perfil.service';
+import axios from 'axios';
 
 @Component({
   selector: 'app-home',
@@ -36,29 +39,36 @@ export class HomePage implements OnInit {
       { hora: '13:00 - 16:40', clase: 'ARQUITECTURA' }
     ]
   };
-  
-  clasesDelDia: { hora: string; clase: string }[] = [];
-  capturedImage: any;  
 
-  constructor(private router: Router, private usuarioService: UsuarioService) {
-    const navigation = this.router.getCurrentNavigation();
-    if (navigation && navigation.extras.state) {
-      this.usuario = navigation.extras.state['usuario'];
-    }
+  clasesDelDia: { hora: string; clase: string }[] = [];
+  capturedImage: any;
+  fotoPerfil: string = '';  
+
+  constructor(private router: Router, private usuarioService: UsuarioService, private perfilService: PerfilService, private storageService: StorageService) {
     this.setClasesDelDia();
   }
 
-  ngOnInit() {
-    if (!this.usuario || !this.usuario.nombreCompleto) {
-      this.usuario = this.usuarioService.getUsuarios()[0]; 
+  async ngOnInit() {
+    // Cargar usuario desde el Storage
+    const usuarioStored = await this.storageService.get('usuario');
+    console.log('Usuario almacenado recuperado:', usuarioStored); // Agregar este log
+    
+    if (usuarioStored) {
+      this.usuario = JSON.parse(usuarioStored); 
+    } else {
+      this.usuario = { nombreCompleto: 'Juan Pérez', semestre: 3, carrera: 'Ingeniería', seccion: 'A', jornada: 'Diurna' };
+      await this.storageService.set('usuario', JSON.stringify(this.usuario));
+      console.log('Usuario por defecto guardado:', this.usuario); // Agregar este log
     }
+  
+    await this.obtenerFotoPerfil();
   }
 
   setClasesDelDia() {
     const dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
     const fechaActual = new Date();
     const diaActual = dias[fechaActual.getDay()];
-    
+
     this.clasesDelDia = this.horario[diaActual] || [];
   }
 
@@ -76,6 +86,17 @@ export class HomePage implements OnInit {
 
     } catch (error) {
       console.error('Error al capturar imagen', error);
+    }
+  }
+
+  async obtenerFotoPerfil() {
+    try {
+      // Supongamos que esta es la URL de la API que proporciona la foto de perfil
+      const response = await axios.get('https://randomuser.me/api/');
+      const foto = response.data.results[0].picture.large; // Cambia según la estructura de la respuesta de tu API
+      this.fotoPerfil = foto; // Almacena la foto de perfil
+    } catch (error) {
+      console.error('Error al obtener la foto de perfil', error);
     }
   }
 
