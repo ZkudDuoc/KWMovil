@@ -2,22 +2,22 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { UsuarioService } from '../../services/usuario.service'; 
-
+import { UsuarioService } from '../../services/usuario.service';
+import { AuthService } from '../../services/auth.service'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-
   loginFormulario: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private toastController: ToastController,
-    private usuarioService: UsuarioService 
+    private usuarioService: UsuarioService,
+    private authService: AuthService 
   ) {
     this.loginFormulario = this.formBuilder.group({
       username: ['', Validators.required],
@@ -33,6 +33,8 @@ export class LoginPage {
       const usuarioValido = usuarios.find(user => user.username === username && user.password === password);
 
       if (usuarioValido) {
+        this.authService.login(usuarioValido); 
+
         const navigationExtras: NavigationExtras = {
           state: {
             usuario: usuarioValido
@@ -47,7 +49,6 @@ export class LoginPage {
           position: 'top'
         });
         await toast.present();
-
       } else {
         const toast = await this.toastController.create({
           message: 'Usuario o contraseña incorrectos',
@@ -65,7 +66,6 @@ export class LoginPage {
       await toast.present();
     }
   }
-
 
   recuperarPassword() {
     this.router.navigate(['/recu-contra']);
