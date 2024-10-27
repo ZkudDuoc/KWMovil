@@ -6,7 +6,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { StorageService } from '../../services/storage.service';
 import { PerfilService } from 'src/app/services/perfil.service';
 import axios from 'axios';
-import emailjs from 'emailjs-com'; // Importa EmailJS
+import emailjs from 'emailjs-com';
 import { ToastController } from '@ionic/angular';
 
 
@@ -59,16 +59,15 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    // Cargar usuario desde el Storage
     const usuarioStored = await this.storageService.get('usuario');
-    console.log('Usuario almacenado recuperado:', usuarioStored); // Agregar este log
+    console.log('Usuario almacenado recuperado:', usuarioStored); 
 
     if (usuarioStored) {
       this.usuario = JSON.parse(usuarioStored);
     } else {
       this.usuario = { nombreCompleto: 'Juan Pérez', semestre: 3, carrera: 'Ingeniería', seccion: 'A', jornada: 'Diurna' };
       await this.storageService.set('usuario', JSON.stringify(this.usuario));
-      console.log('Usuario por defecto guardado:', this.usuario); // Agregar este log
+      console.log('Usuario por defecto guardado:', this.usuario); 
     }
 
     await this.obtenerFotoPerfil();
@@ -91,12 +90,10 @@ export class HomePage implements OnInit {
         const position = await Geolocation.getCurrentPosition();
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-  
         const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
         const address = response.data.display_name;
         console.log('Dirección:', address);
   
-        // Muestra el toast con la dirección
         await this.mostrarToast(address);
       } else {
         console.error('No se pudo escanear el código');
@@ -109,23 +106,22 @@ export class HomePage implements OnInit {
   async mostrarToast(direccion: string) {
     const toast = await this.toastController.create({
       message: `Dirección: ${direccion}`,
-      duration: 10000, // Duración en milisegundos (10 segundos)
-      position: 'bottom', // Posición del toast (puede ser 'top', 'middle', o 'bottom')
-      color: 'dark', // Color del toast (opcional)
+      duration: 10000, 
+      position: 'bottom', 
+      color: 'dark', 
     });
     await toast.present();
   }
 
   async enviarCorreo(lat: number, lon: number, address: string) {
     const templateParams = {
-      from_name: 'appMovile', // Puedes cambiar esto
+      from_name: 'appMovile', 
       to_name: 'Nico Saavedra',
       coordinates: `Latitud: ${lat}, Longitud: ${lon}`,
       address: address,
     };
 
     try {
-      // Reemplaza 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', 'YOUR_USER_ID' con tus valores de EmailJS
       await emailjs.send('service_yrzd448', 'template_wc9leg3', templateParams, 'jOS-iYahM44Okfz-t');
       console.log('Correo enviado con éxito');
     } catch (error) {
@@ -135,10 +131,9 @@ export class HomePage implements OnInit {
 
   async obtenerFotoPerfil() {
     try {
-      // Supongamos que esta es la URL de la API que proporciona la foto de perfil
       const response = await axios.get('https://randomuser.me/api/');
-      const foto = response.data.results[0].picture.large; // Cambia según la estructura de la respuesta de tu API
-      this.fotoPerfil = foto; // Almacena la foto de perfil
+      const foto = response.data.results[0].picture.large;
+      this.fotoPerfil = foto;
     } catch (error) {
       console.error('Error al obtener la foto de perfil', error);
     }

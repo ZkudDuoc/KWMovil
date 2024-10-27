@@ -4,7 +4,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { UsuarioService } from '../../services/usuario.service';
 import { AuthService } from '../../services/auth.service'; 
-import { StorageService } from '../../services/storage.service'; // Importar el servicio de storage
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginPage {
     private toastController: ToastController,
     private usuarioService: UsuarioService,
     private authService: AuthService, 
-    private storageService: StorageService // Inyectar el servicio de storage
+    private storageService: StorageService 
   ) {
     this.loginFormulario = this.formBuilder.group({
       username: ['', Validators.required],
@@ -36,10 +36,7 @@ export class LoginPage {
       const usuarioValido = usuarios.find(user => user.username === username && user.password === password);
   
       if (usuarioValido) {
-        // Lógica para la autenticación
         this.authService.login(usuarioValido); 
-
-        // Guardar el usuario en el Storage
         await this.storageService.set('usuario', JSON.stringify(usuarioValido));
   
         const navigationExtras: NavigationExtras = {

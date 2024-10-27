@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'; 
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './pages/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,13 +26,16 @@ const routes: Routes = [
     path: 'asistencia',
     loadChildren: () => import('./pages/asistencia/asistencia.module').then(m => m.AsistenciaPageModule),
     canActivate: [AuthGuard]
+    
   },
-  // Ruta para la página 404
+  {
+    path: 'recu-contra',
+    loadChildren: () => import('./pages/recu-contra/recu-contra.module').then(m => m.RecuContraPageModule)
+  },
   {
     path: '404',
     loadChildren: () => import('./pages/page-nf/page-nf.module').then(m => m.PageNFPageModule)
   },
-  // Redirección a 404 para URLs no válidas
   {
     path: '**',
     redirectTo: '404'
