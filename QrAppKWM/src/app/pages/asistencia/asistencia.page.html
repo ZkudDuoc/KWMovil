@@ -17,7 +17,7 @@
       <ion-card-content>
         <p><strong>Clases:</strong> {{ asignatura.clases }}</p>
         <p><strong>Asistidas:</strong> {{ asignatura.Asistidas }}</p>
-        <p><strong>Porcentaje:</strong> {{ calcularPorcentaje(asignatura.Asistidas, asignatura.clases) }}%</p>
+        <p><strong>Porcentaje:</strong> {{ calcularPorcentaje(asignatura.Asistidas, asignatura.clases) | number: '1.0-2' }}%</p>
       </ion-card-content>
     </ion-card>
   </div>

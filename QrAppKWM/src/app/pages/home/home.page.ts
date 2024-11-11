@@ -6,7 +6,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { StorageService } from '../../services/storage.service';
 import { PerfilService } from 'src/app/services/perfil.service';
 import axios from 'axios';
-import emailjs from 'emailjs-com';
+/*import emailjs from 'emailjs-com';*/
 import { ToastController } from '@ionic/angular';
 
 
@@ -112,7 +112,7 @@ export class HomePage implements OnInit {
     });
     await toast.present();
   }
-
+/*
   async enviarCorreo(lat: number, lon: number, address: string) {
     const templateParams = {
       from_name: 'appMovile', 
@@ -127,7 +127,7 @@ export class HomePage implements OnInit {
     } catch (error) {
       console.error('Error al enviar el correo:', error);
     }
-  }
+  }*/
 
   async obtenerFotoPerfil() {
     try {
