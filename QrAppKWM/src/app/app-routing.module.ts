@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core'; 
+import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './pages/guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard]  
   },
   {
     path: '',
@@ -20,13 +20,12 @@ const routes: Routes = [
   {
     path: 'horario',
     loadChildren: () => import('./pages/horario/horario.module').then(m => m.HorarioPageModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard]  
   },
   {
     path: 'asistencia',
     loadChildren: () => import('./pages/asistencia/asistencia.module').then(m => m.AsistenciaPageModule),
-    canActivate: [AuthGuard]
-    
+    canActivate: [AuthGuard]  
   },
   {
     path: 'recu-contra',
@@ -34,11 +33,11 @@ const routes: Routes = [
   },
   {
     path: '404',
-    loadChildren: () => import('./pages/page-nf/page-nf.module').then(m => m.PageNFPageModule)
+    loadChildren: () => import('./pages/page-nf/page-nf.module').then(m => m.PageNFPageModule) 
   },
   {
     path: '**',
-    redirectTo: '404'
+    redirectTo: '404' 
   }
 ];
 
