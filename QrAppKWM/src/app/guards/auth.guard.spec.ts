@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { AuthGuard } from './auth.guard'; 
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 describe('AuthGuard', () => {
   let authGuard: AuthGuard;
@@ -34,6 +34,6 @@ describe('AuthGuard', () => {
   it('should block activation and navigate to login if the user is not logged in', () => {
     spyOn(authService, 'isLoggedIn').and.returnValue(false); 
     expect(authGuard.canActivate()).toBe(false);
-    expect(router.navigate).toHaveBeenCalledWith(['/home']);
+    expect(router.navigate).toHaveBeenCalledWith(['/login']);  
   });
 });

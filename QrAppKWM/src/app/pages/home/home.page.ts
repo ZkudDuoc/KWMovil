@@ -9,7 +9,6 @@ import axios from 'axios';
 import emailjs from 'emailjs-com';
 import { ToastController } from '@ionic/angular';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -138,9 +137,9 @@ export class HomePage implements OnInit {
       console.error('Error al obtener la foto de perfil', error);
     }
   }
-  
 
   logout() {
+    this.storageService.remove('usuario');
     this.router.navigate(['/login']);
   }
 }
