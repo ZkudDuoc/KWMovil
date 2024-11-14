@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class AsistenciaService {
   private asignaturas = [
-    { nombre: 'ETICA PARA EL TRABAJO', clases: 6, Asistidas: 6 },
-    { nombre: 'INGLES INTERMEDIO', clases: 20, Asistidas: 16 },
-    { nombre: 'ESTADISTICA DESCRIPTIVA', clases: 10, Asistidas: 9 },
-    { nombre: 'PROGRAMACION DE APLICACIONES MOVILES', clases: 9, Asistidas: 9 },
-    { nombre: 'CALIDAD DE SOFTWARE', clases: 9, Asistidas: 9 },
-    { nombre: 'ARQUITECTURA', clases: 5, Asistidas: 3 }
+    { nombre: 'ETICA PARA EL TRABAJO', clases: 14, Asistidas: 14 },
+    { nombre: 'INGLES INTERMEDIO', clases: 49, Asistidas: 39 },
+    { nombre: 'ESTADISTICA DESCRIPTIVA', clases: 23, Asistidas: 20 },
+    { nombre: 'PROGRAMACION DE APPS MOVILES', clases: 23, Asistidas: 21 },
+    { nombre: 'CALIDAD DE SOFTWARE', clases: 21, Asistidas: 20},
+    { nombre: 'ARQUITECTURA', clases: 11, Asistidas: 8 }
   ];
 
   constructor() {}
@@ -20,6 +20,6 @@ export class AsistenciaService {
   }
 
   calcularPorcentaje(Asistidas: number, clases: number): number {
-    return parseFloat(((Asistidas / clases) * 100).toFixed(1));
+    return Math.round((Asistidas / clases) * 100);
   }
-}
+}  

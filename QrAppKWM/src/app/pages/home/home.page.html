@@ -1,6 +1,6 @@
-<ion-menu side="start" content-id="main-content" style="--background: rgb(0, 255, 30);">
+<ion-menu side="start" content-id="main-content" style="--background: rgba(55, 241, 123, 0.938);">
   <ion-header>
-    <ion-toolbar style="--background: rgb(0, 255, 30);">
+    <ion-toolbar style="--background: rgb(55, 241, 123, 0.938);">
       <ion-title style="color: white;">Opciones</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -14,9 +14,9 @@
   </ion-content>
 </ion-menu>
 
-<ion-menu side="end" content-id="main-content" style="--background: rgb(0, 255, 30);">
+<ion-menu side="end" content-id="main-content" style="--background: rgb(55, 241, 123, 0.938);">
   <ion-header>
-    <ion-toolbar style="--background: rgb(0, 255, 30);">
+    <ion-toolbar style="--background: rgb(55, 241, 123, 0.938);">
       <ion-title style="color: white;">Opciones</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -31,7 +31,7 @@
 </ion-menu>
 
 <ion-header>
-  <ion-toolbar style="--background: rgb(0, 255, 30);">
+  <ion-toolbar style="--background: rgb(55, 241, 123, 0.938);">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -44,7 +44,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content id="main-content" class="ion-padding">
+<ion-content id="main-content" class="ion-padding home">
   <div class="credencial" *ngIf="usuario">
     <img *ngIf="fotoPerfil" [src]="fotoPerfil" alt="Foto de Perfil" style="width: 100px; height: 100px; border-radius: 50%;">
     <h2>{{ usuario.nombreCompleto }}</h2>
@@ -56,7 +56,7 @@
   
   <ion-card *ngIf="clasesDelDia.length > 0">
     <ion-card-header>
-      <ion-card-title>Clases de Hoy</ion-card-title>
+      <ion-card-title style="color: rgb(0, 0, 0);">Clases de Hoy</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ul>
@@ -69,11 +69,11 @@
   
   <ion-card *ngIf="clasesDelDia.length === 0">
     <ion-card-header>
-      <ion-card-title>No hay clases hoy</ion-card-title>
+      <ion-card-title style="color: rgb(0, 0, 0);">No hay clases Hoy</ion-card-title>
     </ion-card-header>
   </ion-card>
   
-  <div class="bottom-navigation" style="background-color: rgb(0, 255, 30);">
+  <div class="bottom-navigation" style="background-color: rgb(55, 241, 123, 0.938);">
     <ion-button fill="clear" class="nav-item" routerLink="/asistencia">
       <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
     </ion-button>

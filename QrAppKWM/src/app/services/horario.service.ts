@@ -10,7 +10,7 @@ export class HorarioService {
       { hora: '20:31 - 21:50', clase: 'INGLES INTERMEDIO' }
     ],
     martes: [
-      { hora: '19:01 - 21:10', clase: 'PROGRAMACION DE APLICACIONES MOVILES' },
+      { hora: '19:01 - 21:10', clase: 'PROGRAMACION DE APPS MOVILES' },
       { hora: '21:11 - 22:30', clase: 'INGLES INTERMEDIO' }
     ],
     miércoles: [
@@ -18,7 +18,7 @@ export class HorarioService {
       { hora: '20:31 - 21:50', clase: 'INGLES INTERMEDIO' }
     ],
     jueves: [
-      { hora: '19:01 - 20:20', clase: 'PROGRAMACION DE APLICACIONES MOVILES' },
+      { hora: '19:01 - 20:20', clase: 'PROGRAMACION DE APPS MOVILES' },
       { hora: '20:30 - 21:10', clase: 'CALIDAD DE SOFTWARE' },
       { hora: '21:11 - 22:30', clase: 'INGLES INTERMEDIO' }
     ],
