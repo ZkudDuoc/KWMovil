@@ -1,215 +1,146 @@
-/* Estilos para el Modo Claro */
-:root {
-  --primary-color: rgb(0, 255, 30);
-  --secondary-color: #ffffff;
-  --background-color: #f4f4f4;
-  --text-color: #333333;
-}
-
-ion-menu {
-  --background: var(--primary-color);
-}
 
 ion-header {
-  --background: var(--primary-color);
+  --background: rgb(55, 241, 123, 0.938); 
 }
 
 ion-toolbar {
-  --background: var(--primary-color);
-}
-
-ion-title {
-  color: var(--secondary-color);
-}
-
-ion-content {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-.credencial {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-  box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  color: var(--text-color);
-  max-width: 300px;
-  margin: 0 auto;
+  --background: rgb(55, 241, 123, 0.938); 
 }
 
 .header-content {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  margin-left: -16px;
+  justify-content: center;
 }
 
 .qr-text {
   font-size: 1.5rem;
   margin-right: 4px;
-  text-align: center;
+  left: 15px;
 }
 
 .asistance-text {
   font-size: 1.5rem;
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
+  color: rgb(255, 255, 255); 
+  border: 2px solid rgb(55, 241, 123, 0.938);
   border-radius: 4px;
   padding: 2px 4px;
-  background-color: var(--secondary-color);
-  text-align: center;
+  background-color: rgb(55, 241, 123, 0.938);
+  left: 15px;
+
 }
 
-ion-card {
-  border-radius: 12px;
-  margin: 10px 0;
-  background-color: #f0f0f0;
-  color: var(--text-color);
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-ion-card-header {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-}
-
-ion-card-title {
-  font-size: 1.2rem;
-}
-
-.bottom-navigation {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: var(--primary-color);
-  padding: 1px 0;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  margin: 0 10px;
-  position: fixed;
-  bottom: 10px;
-  width: calc(100% - 50px);
-}
-
-.nav-item {
-  --color: #000000;
-  --ion-color-base: transparent;
-}
-
-.nav-item.active {
-  --color: #ffffff;
-}
-
-.center-item {
-  position: relative;
-  top: -20px;
-}
-
-.center-button {
-  background-color: rgb(0, 255, 30);
-  border-radius: 50%;
-  padding: 15px;
+.home {
+  --background: rgb(43, 43, 43); 
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  color: rgb(0, 0, 0);
+  height: 100%;
 }
 
-/* Estilos para el Modo Oscuro */
-@media (prefers-color-scheme: dark) {
-  .credencial {
-    border: 1px solid var(--ion-color-medium);
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-    box-shadow: 2px 4px 15px rgba(0, 0, 0, 0.2);
-    background-color: #4d4747;
-    color: var(--ion-text-color);
-    max-width: 300px;
-    margin: 0 auto;
-  }
+.credencial {
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-color: rgb(43, 43, 43);
+}
 
-  .header-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-left: -16px;
-  }
+h2 {
+  font-size: 1.5rem;
+}
 
-  .qr-text {
-    font-size: 1.5rem;
-    margin-right: 4px;
-    text-align: center;
-  }
+p {
+  font-size: 1rem;
+}
 
-  .asistance-text {
-    font-size: 1.5rem;
-    color: rgb(0, 255, 30);
-    border: 2px solid rgb(0, 255, 30);
-    border-radius: 4px;
-    padding: 2px 4px;
-    background-color: var(--secondary-color);
-    text-align: center;
-  }
+ion-card {
+  background-color: rgb(43, 43, 43);
+  border-radius: 15px;
+  padding: 15px;
+  border: 2px solid rgb(55, 241, 123, 0.938);
+  color: rgb(255, 255, 255);
+  margin-top: 10px;
+}
 
-  ion-card {
-    border-radius: 12px;
-    margin: 10px 0;
-    background-color: #5a5a5a;
-    color: var(--secondary-color);
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-  }
+ion-card-header {
+  background-color: rgb(55, 241, 123, 0.938); 
+  color: rgb(230, 0, 255);
+}
 
-  ion-card-header {
-    background-color: #777;
-    color: var(--secondary-color);
-  }
+.bottom-navigation {
+  position: fixed; 
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(55, 241, 123, 0.938); 
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  z-index: 10; 
+}
 
-  ion-card-title {
-    font-size: 1.2rem;
-  }
+.nav-item {
+  color: black; 
+}
 
-  .bottom-navigation {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #6f0ce0;
-    padding: 1px 0;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    margin: 0 10px;
-    position: fixed;
-    bottom: 10px;
-    width: calc(100% - 50px);
-  }
+.center-item {
+  display: flex;
+  justify-content: center;
+}
 
-  .nav-item {
-    --color: #ffffff;
-    --ion-color-base: transparent;
-  }
+.center-button {
+  --background: rgb(55, 241, 123, 0.938);
+  --border-radius: 20px;
+}
 
-  .nav-item.active {
-    --color: #ffffff;
-  }
+.center-button:hover {
+  --background: rgba(55, 241, 123, 0.466);
+}
 
-  .center-item {
-    position: relative;
-    top: -20px;
-  }
+ion-button {
+  --background: rgb(55, 241, 123, 0.938);
+  --border-radius: 20px;
+  transition: background 0.3s;
+}
 
-  .center-button {
-    background-color: rgb(244, 145, 32);
-    border-radius: 50%;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    color: rgb(0, 0, 0);
+ion-button:hover {
+  --background: rgb(55, 241, 123, 0.938);
+}
+
+ion-menu-button::part(icon) {
+  color: black; 
+}
+
+ion-menu {
+  ion-icon {
+    color: rgb(55, 241, 123, 0.938); 
+  }
+}
+
+ion-item[button] {
+  font-family: inherit; 
+  color: rgb(255, 255, 255); 
+}
+
+ion-label {
+  font-family: inherit; 
+}
+
+ion-menu {
+  ion-item {
+    border-bottom: 1px solid rgba(55, 241, 123, 0.938); 
+    margin: 0; 
+    padding: 8px 0; 
+  }
+}
+
+
+ion-button[fill="clear"] .nav-item ion-icon {
+  color: black; 
+}
+
+ion-button[fill="clear"]::part(native) {
+  ion-icon {
+    color: black; 
   }
 }

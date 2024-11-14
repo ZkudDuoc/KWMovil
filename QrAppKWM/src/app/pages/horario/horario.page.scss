@@ -1,62 +1,87 @@
+ion-header {
+  --background: rgb(55, 241, 123, 0.938); 
+}
+
+ion-toolbar {
+  --background: rgb(55, 241, 123, 0.938); 
+}
+
+ion-title {
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  font-weight: normal; 
+  text-transform: uppercase;
+  
+}
+
+#main-content {
+  --background: rgb(43, 43, 43); 
+  padding: 20px;
+}
+
 ion-card {
-    margin: 10px 0;
-    border-radius: 10px; 
-    border: 1.5px solid rgb(255, 136, 0); 
-    background-color: #ffffff; 
-    transform: scale(0.95); 
-  }
-  
- 
-  ion-card-header {
-    background-color: rgb(255, 136, 0); 
-    padding: 8px; 
-    border-radius: 10px 10px 0 0; 
-  }
-  
-  ion-card-title {
-    font-size: 1.4rem; 
-    font-weight: 600; 
-    color: #ffffff; 
-    text-align: center; 
-  }
-  
- 
-  ion-card-content {
-    font-size: 0.5rem;
-    padding: 10px; 
-  }
-  
-  ion-card-content ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  ion-card-content li {
-    margin: 1px 0;
-    color: #656262; 
-    font-weight: 500; 
-    border-bottom: 1px solid #656262; 
-    padding-bottom: 4px; 
-  }
- 
+  background-color: rgb(43, 43, 43); 
+  border-radius: 15px;
+  padding: 15px;
+  border: 2px solid rgb(55, 241, 123, 0.938); 
+  color: rgb(0, 0, 0);
+  margin-bottom: 15px;
+}
+
+ion-card-header {
+  background-color: rgb(55, 241, 123, 0.938); 
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+ion-card-title {
+  font-size: 1.25rem;
+  font-weight: normal;
+  color: rgb(0, 0, 0); 
+  text-align: left; 
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 .horario-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; 
-    margin-bottom: 10px;
-  }
-  
-  .hora {
-    flex: 1;
-    font-size: 0.9rem;
-    margin-right: 0.1px;
-  }
-  
-  .clase {
-    flex: 2;
-    font-size: 1rem;
-    
-    overflow: hidden;
-    text-overflow: ellipsis; 
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid rgb(55, 241, 123, 0.938); 
+}
+
+.hora {
+  font-weight: bold;
+}
+
+.clase {
+  font-style: italic;
+}
+
+ion-back-button {
+  color: rgb(0, 0, 0); 
+}
+
+ion-icon {
+  color: black; 
+}
+
+ion-button {
+  --background: rgb(55, 241, 123, 0.938); 
+  --border-radius: 20px;
+  transition: background 0.3s;
+}
+
+ion-button:hover {
+  --background: rgba(55, 241, 123, 0.466); 
+}
+
+.hora, .clase {
+  font-size: 1rem;
+  color: rgb(255, 255, 255); 
+  font-family: 'Arial', sans-serif;
+}

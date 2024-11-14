@@ -1,90 +1,98 @@
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-left: -8px; 
-}
-
-.qr-text {
-  font-size: 1.5rem;
-  margin-right: 2px; 
-}
-
-.asistance-text {
-  font-size: 1.5rem;
-  color: rgb(255, 136, 0);
-  border: 2px solid rgb(255, 136, 0); 
-  border-radius: 4px;
-  padding: 2px 4px;
-  background-color: white;
-}
-
-
 ion-header {
   --padding-start: 0;
   --padding-end: 0;
 }
 
 ion-toolbar {
-  --background: rgb(255, 136, 0); 
-  --color: white; 
+  --background: rgb(55, 241, 123, 0.938);
+  --color: white;
+  display: flex;
+  justify-content: center; 
+  position: relative;
 }
 
 ion-title {
   display: flex;
   justify-content: center;
   width: 100%;
+  position: absolute;
+  top: 30px; 
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.qr-text {
+  font-size: 1.5rem;
+  margin-right: 4px;
+}
+
+.asistance-text {
+  font-size: 1.5rem;
+  color: white;
+  border: 2px solid rgb(55, 241, 123, 0.938);
+  border-radius: 4px;
+  padding: 2px 4px;
+  background-color: rgb(55, 241, 123, 0.938);
+}
 
 ion-content {
-  background: linear-gradient(135deg, #6a0572, #aa00ff); 
+  --background: rgb(43, 43, 43);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
 }
 
 ion-card {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); 
-  padding: 10px;
-  border: 2px solid rgb(255, 136, 0); 
-  max-width: 300px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: rgb(43, 43, 43);
+  border-radius: 15px;
+  padding: 15px;
+  border: 2px solid rgb(55, 241, 123, 0.938);
+  color: white;
 }
 
+ion-card-title {
+  color: white;
+}
 
 ion-item {
   --background: white;
   --border-radius: 10px;
   margin-bottom: 20px;
-  --border-color: rgb(255, 136, 0);
+  --border-color: rgb(55, 241, 123, 0.938);
   --border-width: 2px;
   --border-style: solid;
 
   ion-label {
-    color: rgb(0, 0, 0); // Color de la etiqueta
+    color: rgb(0, 0, 0);
   }
 
   ion-input {
-    color: #000; // Color del texto en el input
+    color: #000;
     --border-radius: 10px;
     --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 }
 
-ion-button {
-  --background: rgb(255, 136, 0);
+ion-button.custom-button {
+  --background: rgb(0, 255, 94);
   --border-radius: 20px;
   transition: background 0.3s;
 
   &:hover {
-    --background: #dc7404; 
+    --background: rgb(0, 194, 71);
   }
 }
 
@@ -95,7 +103,7 @@ ion-button {
 }
 
 .forgot-password a {
-  color: rgb(255, 136, 0); 
+  color: rgb(55, 241, 123, 0.938);
   text-decoration: underline;
   font-size: 0.9rem;
   margin-top: 10px;
