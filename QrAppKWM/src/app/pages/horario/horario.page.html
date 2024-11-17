@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar style="--background: rgb(55, 241, 123, 0.938);">
-    <ion-title>Horario</ion-title>
+    <ion-title bold >Horario</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -9,21 +9,32 @@
 
 
 
-<ion-content id="main-content" [fullscreen]="true">
-  <div *ngFor="let dia of ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado']">
-    <ion-card style="border: 2px solid rgb(55, 241, 123, 0.938);">
-      <ion-card-header>
-        <ion-card-title>{{ dia.charAt(0).toUpperCase() + dia.slice(1) }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ul>
-          <li *ngFor="let item of horario[dia]" class="horario-item">
-            <span class="hora">{{ item.hora }}</span>
-            <span class="clase">{{ item.clase }}</span>
-          </li>
-        </ul>
-      </ion-card-content>
-    </ion-card>
+<div class="horario-container">
+  <div class="dia-header">
+    <h2>{{ diaActual }}</h2>
   </div>
-</ion-content>
 
+
+  <div class="clases">
+    <div *ngFor="let clase of horario[diaActual]" class="clase">
+      <div class="hora">{{ clase.hora }}</div>
+      <div class="materia">{{ clase.clase }}</div>
+    </div>
+  </div>
+
+
+  <div class="navegacion">
+    <ion-icon
+      name="arrow-back-circle"
+      (click)="prevDay()"
+      class="arrow-left"
+      [class.disabled]="diaActualIndex === 0"
+    ></ion-icon>
+    <ion-icon
+      name="arrow-forward-circle"
+      (click)="nextDay()"
+      class="arrow-right"
+      [class.disabled]="diaActualIndex === dias.length - 1"
+    ></ion-icon>
+  </div>
+</div>

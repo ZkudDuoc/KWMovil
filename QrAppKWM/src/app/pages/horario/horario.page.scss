@@ -1,87 +1,86 @@
-ion-header {
-  --background: rgb(55, 241, 123, 0.938); 
-}
-
-ion-toolbar {
-  --background: rgb(55, 241, 123, 0.938); 
+.horario-container {
+  background-color: rgb(43, 43, 43); /* Fondo oscuro */
+  color: white;
+  height: 100vh; /* Pantalla completa */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrado vertical */
+  align-items: center; /* Centrado horizontal */
+  padding: 1em;
+  gap: 1em; /* Espacio entre elementos */
 }
 
 ion-title {
   color: rgb(0, 0, 0);
   font-size: 1.2rem;
-  font-weight: normal; 
-  text-transform: uppercase;
-  
-}
-
-#main-content {
-  --background: rgb(43, 43, 43); 
-  padding: 20px;
-}
-
-ion-card {
-  background-color: rgb(43, 43, 43); 
-  border-radius: 15px;
-  padding: 15px;
-  border: 2px solid rgb(55, 241, 123, 0.938); 
-  color: rgb(0, 0, 0);
-  margin-bottom: 15px;
-}
-
-ion-card-header {
-  background-color: rgb(55, 241, 123, 0.938); 
-  color: rgb(0, 0, 0);
-  border-radius: 10px;
-  padding: 10px;
-}
-
-ion-card-title {
-  font-size: 1.25rem;
   font-weight: normal;
-  color: rgb(0, 0, 0); 
-  text-align: left; 
+  text-transform: uppercase;
+  text-align: center;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.horario-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-  border-bottom: 1px solid rgb(55, 241, 123, 0.938); 
-}
-
-.hora {
+.dia-header {
+  background-color: rgba(55, 241, 123, 0.938);
+  width: 80%; 
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1.5em;
   font-weight: bold;
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+}
+
+.clases {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  width: 80%; 
+  gap: 1em; 
+  overflow-y: auto;
+  max-height: 60%; 
 }
 
 .clase {
-  font-style: italic;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%;
+  padding: 0.8em 1em;
+  background-color: rgb(43, 43, 43); 
+  border: 2px solid rgba(55, 241, 123, 0.938); 
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  font-size: 1.2em;
+  color: white;
 }
 
-ion-back-button {
-  color: rgb(0, 0, 0); 
+.hora {
+  font-size: 1em;
+  color: rgba(55, 241, 123, 0.938); 
 }
 
-ion-icon {
-  color: black; 
+.materia {
+  font-size: 1.1em;
+  color: white;
 }
 
-ion-button {
-  --background: rgb(55, 241, 123, 0.938); 
-  --border-radius: 20px;
-  transition: background 0.3s;
+.navegacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%; 
+  margin-top: 1em;
 }
 
-ion-button:hover {
-  --background: rgba(55, 241, 123, 0.466); 
+.arrow-left,
+.arrow-right {
+  font-size: 2.5em;
+  color: rgba(55, 241, 123, 0.938);
+  cursor: pointer;
 }
 
-.hora, .clase {
-  font-size: 1rem;
-  color: rgb(255, 255, 255); 
-  font-family: 'Arial', sans-serif;
+.arrow-left.disabled,
+.arrow-right.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }

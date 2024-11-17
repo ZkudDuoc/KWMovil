@@ -1,81 +1,43 @@
-
-ion-header {
-  --background: rgb(55, 241, 123, 0.938); 
-}
-
-ion-toolbar {
-  --background: rgb(55, 241, 123, 0.938); 
-}
-
-ion-title {
-  color: rgb(0, 0, 0);
-  font-size: 1.2rem;
-  font-weight: normal; 
-  text-transform: uppercase;
-  
-}
-
 ion-content {
-  --background: rgb(43, 43, 43); 
+  --background: rgb(43, 43, 43); /* Fondo oscuro */
+  display: flex; /* Para usar flexbox */
+  flex-direction: column;
+  justify-content: center; /* Centrado vertical */
+  align-items: center; /* Centrado horizontal */
   padding: 20px;
+  gap: 1em; /* Espacio entre elementos */
 }
 
 ion-card {
-  background-color: rgb(43, 43, 43);
+  width: 100%; /* Ocupa el ancho completo del contenedor */
+  max-width: 400px; /* Limita el ancho máximo */
+  background-color: rgb(43, 43, 43); /* Fondo oscuro */
   border-radius: 15px;
   padding: 15px;
-  border: 2px solid rgb(55, 241, 123, 0.938);
-  color: rgb(0, 0, 0); 
+  border: 2px solid rgb(55, 241, 123, 0.938); /* Verde */
+  color: white;
   margin-bottom: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombras */
 }
 
 ion-card-header {
-  background-color: rgb(55, 241, 123, 0.938); 
-  color: rgb(0, 0, 0);
+  background-color: rgb(55, 241, 123, 0.938); /* Verde */
+  color: rgb(0, 0, 0); /* Texto negro */
   border-radius: 10px;
   padding: 10px;
+  text-align: center;
 }
 
 ion-card-title {
   font-size: 1.25rem;
   font-weight: normal;
-  color: rgb(0, 0, 0); 
-  text-align: left;
+  color: rgb(0, 0, 0); /* Texto negro */
+  text-align: center;
 }
 
 ion-card-content {
   font-size: 1rem;
   padding: 15px;
-}
-
-ion-card-content p {
-  margin: 5px 0;
-  font-size: 1rem;
-  color: rgb(255, 255, 255);
-  font-family: 'Arial', sans-serif;
-}
-
-
-ion-back-button {
-  color: rgb(0, 0, 0); 
-}
-
-ion-icon {
-  color: black;
-}
-
-ion-button {
-  --background: rgb(55, 241, 123, 0.938);
-  --border-radius: 20px;
-  transition: background 0.3s;
-}
-
-ion-button:hover {
-  --background: rgba(55, 241, 123, 0.466);
-}
-
-.hora, .clase {
-  font-size: 1rem;
-  color: rgb(255, 255, 255); 
-  font-family: 'Arial', sans-serif;
+  color: white; /* Texto blanco */
+  text-align: center;
 }

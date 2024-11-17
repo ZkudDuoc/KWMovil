@@ -29,6 +29,15 @@ ion-toolbar {
   left: 15px;
 
 }
+.custom-loader-class {
+  .loading-spinner {
+    color: #28a745; 
+  }
+
+  .loading-message {
+    color: #28a745; 
+  }
+}
 
 .home {
   --background: rgb(43, 43, 43); 

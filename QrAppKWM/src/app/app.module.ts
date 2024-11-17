@@ -12,6 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
+import { LoaderService } from './services/loader.service';
+import { HorarioService } from './services/horario.service';
+import { HorarioPage } from './pages/horario/horario.page';
 
 
 
@@ -24,11 +27,12 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule
   ],
   providers: [
-    BarcodeScanner,
+    BarcodeScanner, LoaderService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthGuard, 
     AuthService 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], 
   bootstrap: [AppComponent],
 })
 export class AppModule {}
