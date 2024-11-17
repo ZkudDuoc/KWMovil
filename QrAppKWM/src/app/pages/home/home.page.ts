@@ -6,8 +6,9 @@ import { Geolocation } from '@capacitor/geolocation';
 import { StorageService } from '../../services/storage.service';
 import { PerfilService } from 'src/app/services/perfil.service';
 import axios from 'axios';
-/*import emailjs from 'emailjs-com';*/
+
 import { ToastController } from '@ionic/angular';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -52,12 +53,15 @@ export class HomePage implements OnInit {
     private usuarioService: UsuarioService,
     private perfilService: PerfilService,
     private storageService: StorageService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loaderService: LoaderService
   ) {
     this.setClasesDelDia();
   }
 
   async ngOnInit() {
+    await this.loaderService.mostrarCargando('Procesando, por favor espera...');
+
     const usuarioStored = await this.storageService.get('usuario');
     console.log('Usuario almacenado recuperado:', usuarioStored); 
 
@@ -70,6 +74,7 @@ export class HomePage implements OnInit {
     }
 
     await this.obtenerFotoPerfil();
+    await this.loaderService.ocultarCargando();
   }
 
   setClasesDelDia() {
@@ -79,54 +84,71 @@ export class HomePage implements OnInit {
     this.clasesDelDia = this.horario[diaActual] || [];
   }
 
-  async openCamara() {
-    try {
-      const scanResult: BarcodeScanResult = await this.barcodeScanner.scan();
-      if (scanResult.text) {
-        const content = scanResult.text;
-        console.log('Código escaneado:', content);
+  async mostrarAlerta(titulo: string, mensaje: string) {
+    const alerta = document.createElement('ion-alert');
+    alerta.header = titulo;
+    alerta.message = mensaje;
+    alerta.buttons = ['OK'];
   
-        const position = await Geolocation.getCurrentPosition();
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        const response = await axios.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`);
-        const address = response.data.display_name;
-        console.log('Dirección:', address);
-  
-        await this.mostrarToast(address);
-      } else {
-        console.error('No se pudo escanear el código');
-      }
-    } catch (error) {
-      console.error('Error al escanear:', error);
-    }
+    document.body.appendChild(alerta);
+    await alerta.present();
   }
   
-  async mostrarToast(direccion: string) {
+
+  async openCamara() {
+    const scanResult: BarcodeScanResult = await this.barcodeScanner.scan();
+    
+    if (scanResult.text) {
+      const content = scanResult.text.trim(); 
+      console.log('Código escaneado:', content);
+  
+      await this.loaderService.mostrarCargando('Procesando datos, por favor espera...');
+      const regexFormatoQR = /^[A-Z0-9]+?\|[A-Z0-9]+?\|[A-Z0-9]+?\|\d{8}$/;
+      await this.loaderService.ocultarCargando();
+      if (regexFormatoQR.test(content)) {
+        const [asignatura, seccion, sala, fecha] = content.split('|');
+        await this.mostrarAlerta(
+          'Asistencia Registrada',
+          `Asignatura: ${asignatura}\nSección: ${seccion}\nSala: ${sala}\nFecha: ${fecha}`
+        );
+      } else {
+        console.error('Formato de código QR no válido');
+        await this.mostrarToast('El código QR no tiene el formato esperado.');
+      }
+  
+      const position = await Geolocation.getCurrentPosition();
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+  
+      const response = await axios.get(
+        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`
+      );
+      const address = response.data.display_name;
+      console.log('Dirección:', address);
+  
+      await this.mostrarToast(`Dirección: ${address}`);
+    } else {
+      console.error('No se pudo escanear el código');
+      await this.mostrarToast('No se detectó ningún código.');
+    }
+  
+    
+  }
+  
+  
+  
+  
+  
+  async mostrarToast(mensaje: string) {
     const toast = await this.toastController.create({
-      message: `Dirección: ${direccion}`,
-      duration: 10000, 
-      position: 'bottom', 
+      message: mensaje,
+      duration: 5000, 
+      position:'bottom', 
       color: 'dark', 
     });
     await toast.present();
   }
-/*
-  async enviarCorreo(lat: number, lon: number, address: string) {
-    const templateParams = {
-      from_name: 'appMovile', 
-      to_name: 'Nico Saavedra',
-      coordinates: `Latitud: ${lat}, Longitud: ${lon}`,
-      address: address,
-    };
 
-    try {
-      await emailjs.send('service_yrzd448', 'template_wc9leg3', templateParams, 'jOS-iYahM44Okfz-t');
-      console.log('Correo enviado con éxito');
-    } catch (error) {
-      console.error('Error al enviar el correo:', error);
-    }
-  }*/
 
   async obtenerFotoPerfil() {
     try {
