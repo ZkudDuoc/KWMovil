@@ -1,28 +1,28 @@
 ion-content {
-  --background: rgb(43, 43, 43); /* Fondo oscuro */
-  display: flex; /* Para usar flexbox */
+  --background: rgb(43, 43, 43); 
+  display: flex; 
   flex-direction: column;
-  justify-content: center; /* Centrado vertical */
-  align-items: center; /* Centrado horizontal */
+  justify-content: center; 
+  align-items: center; 
   padding: 20px;
-  gap: 1em; /* Espacio entre elementos */
+  gap: 1em; 
 }
 
 ion-card {
-  width: 100%; /* Ocupa el ancho completo del contenedor */
-  max-width: 400px; /* Limita el ancho máximo */
-  background-color: rgb(43, 43, 43); /* Fondo oscuro */
+  width: 100%; 
+  max-width: 400px; 
+  background-color: rgb(43, 43, 43); 
   border-radius: 15px;
   padding: 15px;
-  border: 2px solid rgb(55, 241, 123, 0.938); /* Verde */
+  border: 2px solid rgb(55, 241, 123, 0.938); 
   color: white;
   margin-bottom: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombras */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
 }
 
 ion-card-header {
-  background-color: rgb(55, 241, 123, 0.938); /* Verde */
-  color: rgb(0, 0, 0); /* Texto negro */
+  background-color: rgb(55, 241, 123, 0.938); 
+  color: rgb(0, 0, 0); 
   border-radius: 10px;
   padding: 10px;
   text-align: center;
@@ -31,13 +31,13 @@ ion-card-header {
 ion-card-title {
   font-size: 1.25rem;
   font-weight: normal;
-  color: rgb(0, 0, 0); /* Texto negro */
+  color: rgb(0, 0, 0); 
   text-align: center;
 }
 
 ion-card-content {
   font-size: 1rem;
   padding: 15px;
-  color: white; /* Texto blanco */
+  color: white; 
   text-align: center;
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HorarioService } from '../../services/horario.service';
+import { AuthService } from '../../services/auth.service'; 
 
 @Component({
   selector: 'app-horario',
@@ -13,13 +14,18 @@ export class HorarioPage {
   diaActualIndex: number = 0; 
   diaActual: string = ''; 
 
-  constructor(private router: Router, private horarioService: HorarioService) {}
+  constructor(
+    private router: Router,
+    private horarioService: HorarioService, 
+    private authService: AuthService ) {}
 
   ngOnInit() {
     this.horario = this.horarioService.getHorario();
     this.dias = Object.keys(this.horario); 
     this.diaActual = this.dias[this.diaActualIndex]; 
   }
+
+  
 
 
   nextDay() {
@@ -37,7 +43,13 @@ export class HorarioPage {
     }
   }
 
+  cambiarDia(index: number) {
+    this.diaActualIndex = index;
+    this.diaActual = this.dias[this.diaActualIndex];
+  }
+  
+
   logout() {
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }

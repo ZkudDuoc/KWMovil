@@ -1,13 +1,13 @@
 .horario-container {
-  background-color: rgb(43, 43, 43); /* Fondo oscuro */
+  background-color: rgb(43, 43, 43); 
   color: white;
-  height: 100vh; /* Pantalla completa */
+  height: 100vh; 
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centrado vertical */
-  align-items: center; /* Centrado horizontal */
+  justify-content: flex-start; 
+  align-items: center;
   padding: 1em;
-  gap: 1em; /* Espacio entre elementos */
+  gap: 1em; 
 }
 
 ion-title {
@@ -16,17 +16,52 @@ ion-title {
   font-weight: normal;
   text-transform: uppercase;
   text-align: center;
+  margin-bottom: 1em; 
+}
+
+.dias-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; 
+  gap: 0.5em;
+  margin-top: 0em; 
+  padding: 0.5em; 
+  width: 100%; 
+  background-color: rgb(43, 43, 43); 
+}
+
+.dia-boton {
+  background-color: rgba(55, 241, 123, 0.938);
+  border: 2px solid rgba(55, 241, 123, 0.938);
+  border-radius: 10px;
+  color: rgb(0, 0, 0);
+  padding: 0.5em 1em;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.dia-boton:hover {
+  background-color: rgba(55, 241, 123, 0.8);
+}
+
+.dia-boton.dia-activo {
+  background-color: rgb(0, 194, 71); 
+  color: white;
+  font-weight: bold;
+  border: 2px solid rgb(0, 194, 71);
 }
 
 .dia-header {
   background-color: rgba(55, 241, 123, 0.938);
-  width: 80%; 
+  width: 80%;
   padding: 0.5em;
   text-align: center;
   font-size: 1.5em;
   font-weight: bold;
   border-radius: 10px;
   color: rgb(0, 0, 0);
+  margin-top: 1em; 
 }
 
 .clases {
@@ -77,6 +112,15 @@ ion-title {
   font-size: 2.5em;
   color: rgba(55, 241, 123, 0.938);
   cursor: pointer;
+}
+
+ion-title {
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  font-weight: bold; 
+  text-transform: uppercase;
+  margin: 0; 
+  text-align: center; 
 }
 
 .arrow-left.disabled,

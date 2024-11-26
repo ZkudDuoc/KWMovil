@@ -1,38 +1,46 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
-export interface User {
-  username: string;
-  password: string;
-}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor() { }
-  isLoggedIn(): boolean {
-    const user = localStorage.getItem('user');
-    console.log('Comprobando si el usuario está logueado: ', user);
-    return !!user; 
-  }
+  private timeoutId: any; 
 
-  getUser(): User | null {
-    const user = localStorage.getItem('user');
-    console.log('Datos del usuario en getUser:', user);
-    return user ? JSON.parse(user) : null; 
-  }
+  constructor(private router:Router, private toastController: ToastController) {}
 
-  login(userData: User): void {
-    try {
-      localStorage.setItem('user', JSON.stringify(userData)); 
-      console.log('Usuario guardado en localStorage:', JSON.stringify(userData)); 
-    } catch (error) {
-      console.error('Error al guardar el usuario:', error);
-    }
+  login(userData: any): void {
+    localStorage.setItem('user', JSON.stringify(userData));
+    this.resetTimeout(); 
   }
 
   logout(): void {
-    localStorage.removeItem('user'); 
-    console.log('Usuario eliminado de localStorage'); 
+    localStorage.removeItem('user');
+    this.clearTimeout(); 
+    console.log('Sesión cerrada automáticamente por inactividad');
+  }
+
+  cerrarSesion(){
+    this.router.navigate(['/login']);
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('user');
+  }
+
+  resetTimeout(): void {
+    this.clearTimeout(); 
+    this.timeoutId = setTimeout(() => {
+      this.logout();
+      this.cerrarSesion(); 
+    }, 30 * 1000); 
+  }
+
+  clearTimeout(): void {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
   }
 }
