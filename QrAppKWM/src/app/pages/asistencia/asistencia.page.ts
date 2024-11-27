@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AsistenciaService } from '../../services/asistencia.service';
 import { AuthService } from 'src/app/services/auth.service';
+
 interface Asignatura {
   nombre: string;
   clases: number;
-  Asistidas: number;
+  asistidas: number;
 }
 
 @Component({
@@ -12,20 +13,36 @@ interface Asignatura {
   templateUrl: './asistencia.page.html',
   styleUrls: ['./asistencia.page.scss'],
 })
-
 export class AsistenciaPage {
-  asignaturas: Asignatura[] = []; 
-  constructor(private asistenciaService: AsistenciaService,
+  asignaturas: Asignatura[] = [];
+  asignaturaVisible: boolean[] = []; 
+
+  constructor(
+    private asistenciaService: AsistenciaService,
     private authService: AuthService
   ) {}
 
   ngOnInit() {
+    this.cargarAsignaturas();
     this.iniciarTimeout();
-    this.asignaturas = this.asistenciaService.getAsignaturas();
   }
 
-  calcularPorcentaje(Asistidas: number, clases: number): number {
-    return this.asistenciaService.calcularPorcentaje(Asistidas, clases);
+  cargarAsignaturas() {
+    this.asignaturas = this.asistenciaService.getAsignaturas();
+    this.asignaturaVisible = this.asignaturas.map(() => false); 
+  }
+
+  toggleCard(index: number) {
+    this.asignaturaVisible[index] = !this.asignaturaVisible[index];
+  }
+
+  calcularPorcentaje(asistidas: number, clases: number): number {
+    return this.asistenciaService.calcularPorcentaje(asistidas, clases);
+  }
+
+  actualizarAsistencia(nombre: string, nuevasAsistidas: number) {
+    this.asistenciaService.updateAsistencia(nombre, nuevasAsistidas);
+    this.cargarAsignaturas(); 
   }
 
   logout() {
@@ -34,20 +51,18 @@ export class AsistenciaPage {
 
   iniciarTimeout() {
     let timeout: any;
-  
+
     const reiniciarTimeout = () => {
       if (timeout) {
         clearTimeout(timeout);
       }
       timeout = setTimeout(() => {
         this.logout();
-      }, 2 * 60 * 1000); 
+      }, 13 * 1000); 
     };
-  
+
     window.addEventListener('click', reiniciarTimeout);
     window.addEventListener('keypress', reiniciarTimeout);
     reiniciarTimeout();
   }
-
-  
 }
