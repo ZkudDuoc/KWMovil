@@ -46,7 +46,6 @@ export class LoginPage {
         };
   
         await this.router.navigate(['/home'], navigationExtras);
-  
         const toast = await this.toastController.create({
           message: `Bienvenido, ${usuarioValido.nombreCompleto}!`,
           duration: 2000,
@@ -69,6 +68,11 @@ export class LoginPage {
       });
       await toast.present();
     }
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']); 
   }
 
   recuperarPassword() {
