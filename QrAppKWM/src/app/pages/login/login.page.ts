@@ -37,8 +37,8 @@ export class LoginPage {
   
       if (usuarioValido) {
         this.authService.login(usuarioValido); 
-        await this.storageService.set('usuario', JSON.stringify(usuarioValido));
   
+        await this.storageService.set('usuario', JSON.stringify(usuarioValido));
         const navigationExtras: NavigationExtras = {
           state: {
             usuario: usuarioValido

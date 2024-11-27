@@ -1,6 +1,12 @@
-// asistencia.page.ts
 import { Component } from '@angular/core';
 import { AsistenciaService } from '../../services/asistencia.service';
+import { AuthService } from 'src/app/services/auth.service';
+
+interface Asignatura {
+  nombre: string;
+  clases: number;
+  asistidas: number;
+}
 
 @Component({
   selector: 'app-asistencia',
@@ -8,31 +14,55 @@ import { AsistenciaService } from '../../services/asistencia.service';
   styleUrls: ['./asistencia.page.scss'],
 })
 export class AsistenciaPage {
-  asignaturas: any[] = [];
-  asignaturaVisible: boolean[] = []; // Controla qué tarjetas están visibles
+  asignaturas: Asignatura[] = [];
+  asignaturaVisible: boolean[] = []; 
 
-  constructor(private asistenciaService: AsistenciaService) {}
+  constructor(
+    private asistenciaService: AsistenciaService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.cargarAsignaturas();
+    this.iniciarTimeout();
   }
 
   cargarAsignaturas() {
     this.asignaturas = this.asistenciaService.getAsignaturas();
-    this.asignaturaVisible = this.asignaturas.map(() => false); // Inicializa todas las tarjetas como ocultas
+    this.asignaturaVisible = this.asignaturas.map(() => false); 
   }
 
   toggleCard(index: number) {
     this.asignaturaVisible[index] = !this.asignaturaVisible[index];
   }
 
-  calcularPorcentaje(Asistidas: number, clases: number): number {
-    return this.asistenciaService.calcularPorcentaje(Asistidas, clases);
+  calcularPorcentaje(asistidas: number, clases: number): number {
+    return this.asistenciaService.calcularPorcentaje(asistidas, clases);
   }
 
-  // Actualizar asistencia desde la tarjeta (ejemplo para interacción futura)
   actualizarAsistencia(nombre: string, nuevasAsistidas: number) {
     this.asistenciaService.updateAsistencia(nombre, nuevasAsistidas);
-    this.cargarAsignaturas(); // Recargar para reflejar los cambios
+    this.cargarAsignaturas(); 
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  iniciarTimeout() {
+    let timeout: any;
+
+    const reiniciarTimeout = () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(() => {
+        this.logout();
+      }, 13 * 1000); 
+    };
+
+    window.addEventListener('click', reiniciarTimeout);
+    window.addEventListener('keypress', reiniciarTimeout);
+    reiniciarTimeout();
   }
 }
