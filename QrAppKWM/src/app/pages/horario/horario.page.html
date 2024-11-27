@@ -7,7 +7,16 @@
   </ion-toolbar>
 </ion-header>
 
-
+<div class="dias-container">
+  <button 
+    *ngFor="let dia of dias; let i = index" 
+    (click)="cambiarDia(i)"
+    [ngClass]="{'dia-activo': i === diaActualIndex}" 
+    class="dia-boton"
+  >
+    {{ dia }}
+  </button>
+</div>
 
 <div class="horario-container">
   <div class="dia-header">

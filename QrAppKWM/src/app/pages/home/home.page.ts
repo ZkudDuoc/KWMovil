@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { BarcodeScanner, BarcodeScanResult } from '@ionic-native/barcode-scanner/ngx';
 import { Geolocation } from '@capacitor/geolocation';
 import { StorageService } from '../../services/storage.service';
+import { AuthService } from '../../services/auth.service'; 
+
 import { PerfilService } from 'src/app/services/perfil.service';
 import axios from 'axios';
 
@@ -54,14 +56,15 @@ export class HomePage implements OnInit {
     private perfilService: PerfilService,
     private storageService: StorageService,
     private toastController: ToastController,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private authService: AuthService
   ) {
     this.setClasesDelDia();
   }
 
   async ngOnInit() {
     await this.loaderService.mostrarCargando('Procesando, por favor espera...');
-
+    this.iniciarTimeout();
     const usuarioStored = await this.storageService.get('usuario');
     console.log('Usuario almacenado recuperado:', usuarioStored); 
 
@@ -136,9 +139,6 @@ export class HomePage implements OnInit {
   }
   
   
-  
-  
-  
   async mostrarToast(mensaje: string) {
     const toast = await this.toastController.create({
       message: mensaje,
@@ -160,8 +160,50 @@ export class HomePage implements OnInit {
     }
   }
 
-  logout() {
+  cerrarSesion(){
     this.storageService.remove('usuario');
     this.router.navigate(['/login']);
+  }
+
+  async logout() {
+    const toast = await this.toastController.create({
+      message: 'Sesión cerrada por inactividad.',
+      duration: 3000, 
+      position: 'bottom',
+      color:'light' 
+    });
+    await toast.present();
+  
+    if (this.authService) {
+      this.authService.logout(); 
+    }
+  
+    this.router.navigate(['/login']);
+  }
+  
+
+  @HostListener('document:click') onUserInteraction(): void {
+    this.authService.resetTimeout(); 
+  }
+
+  @HostListener('document:keydown') onKeyInteraction(): void {
+    this.authService.resetTimeout(); 
+  }
+
+  iniciarTimeout() {
+    let timeout: any;
+  
+    const reiniciarTimeout = () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+      timeout = setTimeout(() => {
+        this.logout();
+      }, 13  * 1000); 
+    };
+  
+    window.addEventListener('click', reiniciarTimeout);
+    window.addEventListener('keypress', reiniciarTimeout);
+    reiniciarTimeout();
   }
 }
