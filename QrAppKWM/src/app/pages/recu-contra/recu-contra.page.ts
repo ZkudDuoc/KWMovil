@@ -26,10 +26,38 @@ export class RecuContraPage {
     });
   }
 
+  // Función de confirmación antes de actualizar la contraseña
+  async confirmLogout() {
+    const alerta = document.createElement('ion-alert');
+    alerta.header = 'Confirmar';
+    alerta.message = '¿Estás seguro de que deseas actualizar la contraseña?';
+    alerta.cssClass = 'custom-alert'; 
+    alerta.buttons = [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          console.log('Actualización cancelada.');
+        },
+      },
+      {
+        text: 'Confirmar',
+        handler: () => {
+          this.navigateToLogin(); // Llamar a la función que actualiza la contraseña
+        },
+      },
+    ];
+
+    document.body.appendChild(alerta);
+    await alerta.present();
+  }
+
+  // Función para actualizar la contraseña y redirigir a login
   async navigateToLogin() {
     const username = this.recuperarFormulario.get('username')?.value.trim();
     const newPassword = this.recuperarFormulario.get('newPassword')?.value;
-    const actualizacionExitosa = this.usuarioService.actualizarPassword(username, newPassword);
+    
+    const actualizacionExitosa = await this.usuarioService.actualizarPassword(username, newPassword);
 
     if (actualizacionExitosa) {
       const toast = await this.toastController.create({
@@ -37,7 +65,7 @@ export class RecuContraPage {
         duration: 2000,
         position: 'top'
       });
-      
+
       toast.present();
       this.router.navigate(['/login']);
     } else {
