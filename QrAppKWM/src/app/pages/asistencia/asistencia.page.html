@@ -8,16 +8,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Botones de asignaturas -->
   <div *ngFor="let asignatura of asignaturas; let i = index">
-    <ion-button
-      expand="block"
-      class="asignatura-button"
-      (click)="toggleCard(i)">
+    <ion-button expand="block" class="asignatura-button" (click)="toggleCard(i)">
       {{ asignatura.nombre }}
     </ion-button>
 
-    <!-- Tarjeta que se despliega -->
     <ion-card *ngIf="asignaturaVisible[i]" class="asignatura-card">
       <ion-card-header>
         <ion-card-title>{{ asignatura.nombre }}</ion-card-title>
@@ -26,18 +21,17 @@
       <ion-card-content>
         <div class="details">
           <p><strong>Clases:</strong> {{ asignatura.clases }}</p>
-          <p><strong>Asistidas:</strong> {{ asignatura.Asistidas }}</p>
-          <p><strong>Porcentaje:</strong> {{ calcularPorcentaje(asignatura.Asistidas, asignatura.clases) | number: '1.0-2' }}%</p>
+          <p><strong>Asistidas:</strong> {{ asignatura.asistidas }}</p>
+          <p><strong>Porcentaje:</strong> {{ calcularPorcentaje(asignatura.asistidas, asignatura.clases) }}%</p>
         </div>
 
-        <!-- Barra de progreso con estilo -->
         <div class="progress-container">
           <ion-progress-bar
-            [value]="calcularPorcentaje(asignatura.Asistidas, asignatura.clases) / 100"
+            [value]="calcularPorcentaje(asignatura.asistidas, asignatura.clases) / 100"
             color="success">
           </ion-progress-bar>
           <span class="progress-label">
-            {{ calcularPorcentaje(asignatura.Asistidas, asignatura.clases) | number: '1.0-2' }}%
+            {{ calcularPorcentaje(asignatura.asistidas, asignatura.clases) }}%
           </span>
         </div>
       </ion-card-content>

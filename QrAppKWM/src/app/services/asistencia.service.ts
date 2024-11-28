@@ -7,12 +7,12 @@ export class AsistenciaService {
   private readonly STORAGE_KEY = 'asistencia';
 
   private asignaturas = [
-    { nombre: 'ETICA PARA EL TRABAJO', clases: 14, Asistidas: 14 },
-    { nombre: 'INGLES INTERMEDIO', clases: 49, Asistidas: 39 },
-    { nombre: 'ESTADISTICA DESCRIPTIVA', clases: 23, Asistidas: 20 },
-    { nombre: 'PROGRAMACION DE APPS MOVILES', clases: 23, Asistidas: 21 },
-    { nombre: 'CALIDAD DE SOFTWARE', clases: 21, Asistidas: 20 },
-    { nombre: 'ARQUITECTURA', clases: 11, Asistidas: 8 }
+    { nombre: 'ETICA PARA EL TRABAJO', clases: 14, asistidas: 14 },
+    { nombre: 'INGLES INTERMEDIO', clases: 49, asistidas: 39 },
+    { nombre: 'ESTADISTICA DESCRIPTIVA', clases: 23, asistidas: 20 },
+    { nombre: 'PROGRAMACION DE APPS MOVILES', clases: 23, asistidas: 21 },
+    { nombre: 'CALIDAD DE SOFTWARE', clases: 21, asistidas: 20 },
+    { nombre: 'ARQUITECTURA', clases: 11, asistidas: 8 }
   ];
 
   constructor() {
@@ -28,10 +28,7 @@ export class AsistenciaService {
 
   getAsignaturas() {
     const data = localStorage.getItem(this.STORAGE_KEY);
-    if (data) {
-      return JSON.parse(data); 
-    }
-    return this.asignaturas; 
+    return data ? JSON.parse(data) : this.asignaturas;
   }
 
   saveAsignaturas(asignaturas: any[]): void {
@@ -39,22 +36,18 @@ export class AsistenciaService {
   }
 
   updateAsistencia(nombre: string, nuevasAsistidas: number): void {
-    const asignaturas = this.getAsignaturas(); 
-  
-    if (Array.isArray(asignaturas)) {
-      const asignatura = asignaturas.find((a: any) => a.nombre === nombre); 
-      if (asignatura) {
-        asignatura.Asistidas = nuevasAsistidas; 
-        this.saveAsignaturas(asignaturas); 
-      } else {
-        console.warn(`No se encontró la asignatura con el nombre: ${nombre}`);
-      }
+    const asignaturas = this.getAsignaturas();
+    const asignatura = asignaturas.find((a: any) => a.nombre === nombre);
+
+    if (asignatura) {
+      asignatura.asistidas = nuevasAsistidas;
+      this.saveAsignaturas(asignaturas);
     } else {
-      console.error('Error: asignaturas no es un array válido.');
+      console.warn(`Asignatura no encontrada: ${nombre}`);
     }
   }
-  
-  calcularPorcentaje(Asistidas: number, clases: number): number {
-    return Math.round((Asistidas / clases) * 100);
+
+  calcularPorcentaje(asistidas: number, clases: number): number {
+    return clases === 0 ? 0 : Math.round((asistidas / clases) * 100);
   }
 }
