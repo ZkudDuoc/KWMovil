@@ -15,7 +15,7 @@ interface Asignatura {
 })
 export class AsistenciaPage {
   asignaturas: Asignatura[] = [];
-  asignaturaVisible: boolean[] = []; 
+  asignaturaVisible: boolean[] = [];
 
   constructor(
     private asistenciaService: AsistenciaService,
@@ -29,7 +29,7 @@ export class AsistenciaPage {
 
   cargarAsignaturas() {
     this.asignaturas = this.asistenciaService.getAsignaturas();
-    this.asignaturaVisible = this.asignaturas.map(() => false); 
+    this.asignaturaVisible = this.asignaturas.map(() => false);
   }
 
   toggleCard(index: number) {
@@ -38,11 +38,6 @@ export class AsistenciaPage {
 
   calcularPorcentaje(asistidas: number, clases: number): number {
     return this.asistenciaService.calcularPorcentaje(asistidas, clases);
-  }
-
-  actualizarAsistencia(nombre: string, nuevasAsistidas: number) {
-    this.asistenciaService.updateAsistencia(nombre, nuevasAsistidas);
-    this.cargarAsignaturas(); 
   }
 
   logout() {
@@ -58,7 +53,7 @@ export class AsistenciaPage {
       }
       timeout = setTimeout(() => {
         this.logout();
-      }, 13 * 1000); 
+      }, 13 * 1000);
     };
 
     window.addEventListener('click', reiniciarTimeout);
