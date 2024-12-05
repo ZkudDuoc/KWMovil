@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { SharedService } from 'src/app/services/shared.service';  // Asegúrate de que esta ruta sea correcta
+import { SharedService } from 'src/app/services/shared.service';  
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { BarcodeScanner, BarcodeScanResult } from '@ionic-native/barcode-scanner/ngx';
@@ -10,7 +10,7 @@ import { PerfilService } from 'src/app/services/perfil.service';
 import axios from 'axios';
 import { ToastController } from '@ionic/angular';
 import { LoaderService } from '../../services/loader.service';
-import { AppComponent } from '../../app.component';  // Asegúrate de importar correctamente AppComponent
+import { AppComponent } from '../../app.component';  
 
 @Component({
   selector: 'app-home',
@@ -57,7 +57,7 @@ export class HomePage implements OnInit {
     private loaderService: LoaderService,
     private authService: AuthService,
     private sharedService: SharedService,
-    private appComponent: AppComponent  // Asegúrate de inyectar AppComponent para usar toggleDarkMode
+    private appComponent: AppComponent  
   ) {
     this.setClasesDelDia();
   }
@@ -85,10 +85,9 @@ export class HomePage implements OnInit {
     await this.obtenerFotoPerfil();
     await this.loaderService.ocultarCargando();
 
-    // Verificar si el modo oscuro está habilitado en localStorage
     const darkMode = localStorage.getItem('dark-mode') === 'true';
     if (darkMode) {
-      document.body.classList.add('dark-theme');  // Aplicar modo oscuro globalmente si está habilitado
+      document.body.classList.add('dark-theme');  
     }
   }
 
@@ -119,13 +118,31 @@ export class HomePage implements OnInit {
       await this.loaderService.mostrarCargando('Procesando datos, por favor espera...');
       const regexFormatoQR = /^[A-Z0-9]+?\|[A-Z0-9]+?\|[A-Z0-9]+?\|\d{8}$/;
       await this.loaderService.ocultarCargando();
-      
+  
       if (regexFormatoQR.test(content)) {
         const [asignatura, seccion, sala, fecha] = content.split('|');
+  
+        const fechaActual = new Date();
+        const fechaActualFormateada = fechaActual.toISOString().slice(0, 10).replace(/-/g, ''); // Formato YYYYMMDD
+  
+        if (fecha !== fechaActualFormateada) {
+          console.error('Fecha del código QR no válida');
+          await this.mostrarToast('La fecha del código QR no corresponde con la fecha actual.');
+          return;
+        }
+  
+        const codigosEscaneados = (await this.storageService.get('codigosEscaneados')) || [];
+        if (codigosEscaneados.includes(content)) {
+          console.error('Código QR ya registrado');
+          await this.mostrarToast('Este código QR ya ha sido registrado previamente.');
+          return;
+        }
+  
         const asistencia = { asignatura, seccion, sala, fecha };
-        
-        // Guarda los datos en SharedService
         this.sharedService.setDatosQR(asistencia);
+  
+        codigosEscaneados.push(content);
+        await this.storageService.set('codigosEscaneados', codigosEscaneados);
   
         await this.mostrarAlerta(
           'Asistencia Registrada',
@@ -140,6 +157,9 @@ export class HomePage implements OnInit {
       await this.mostrarToast('No se detectó ningún código.');
     }
   }
+  
+
+  
 
   async mostrarToast(mensaje: string) {
     const toast = await this.toastController.create({
@@ -242,10 +262,10 @@ export class HomePage implements OnInit {
     }
   }
 
-  // Método para alternar entre el modo oscuro y claro
+
   toggleDarkMode() {
-    document.body.classList.toggle('dark-theme');  // Alterna la clase dark-theme en el body
+    document.body.classList.toggle('dark-theme'); 
     const isDark = document.body.classList.contains('dark-theme');
-    localStorage.setItem('dark-mode', isDark.toString());  // Guarda la preferencia en localStorage
+    localStorage.setItem('dark-mode', isDark.toString());  
   }
 }

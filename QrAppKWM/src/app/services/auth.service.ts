@@ -114,7 +114,7 @@ export class AuthService {
         clearInterval(this.countdownInterval);
         this.dismissActiveAlert();
       } else if (this.activeAlert) {
-        this.activeAlert.message = `Tu sesión se cerraráen breve.`;
+        this.activeAlert.message = `Tu sesión se cerrará en breve.`;
       }
     }, 1000);
   }

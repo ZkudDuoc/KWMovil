@@ -20,15 +20,13 @@ export class SharedService {
 
   /**
    * Obtiene todos los datos QR almacenados.
-   * @returns Lista de datos QR.
+   * @returns 
    */
   getDatosQR() {
-    return [...this.datosQR]; // Retorna una copia para evitar modificaciones directas.
+    return [...this.datosQR]; 
   }
 
-  /**
-   * Limpia la lista de datos QR.
-   */
+  
   clearDatosQR() {
     this.datosQR = [];
   }
