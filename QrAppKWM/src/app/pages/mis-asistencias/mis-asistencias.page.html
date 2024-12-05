@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: rgb(55, 241, 123, 0.938);">
+    <ion-title bold >Mis Asistencias</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="asistencias.length > 0">
+    <ion-item *ngFor="let asistencia of asistencias">
+      <ion-label>
+        <h2>{{ asistencia.asignatura }}</h2>
+        <p><strong>Sección:</strong> {{ asistencia.seccion }}</p>
+        <p><strong>Sala:</strong> {{ asistencia.sala }}</p>
+        <p><strong>Fecha:</strong> {{ asistencia.fecha }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="asistencias.length === 0" class="no-data">
+    <p>No hay asistencias registradas.</p>
+  </div>
+</ion-content>

@@ -1,11 +1,12 @@
+/* Estilos para el header */
 ion-header {
   --padding-start: 0;
   --padding-end: 0;
 }
 
 ion-toolbar {
-  --background: rgb(55, 241, 123, 0.938); 
-  --color: white;
+  --background: var(--ion-color-primary);  /* Fondo dinámico */
+  --color: var(--ion-text-color);  /* Texto dinámico */
 }
 
 ion-title {
@@ -17,8 +18,8 @@ ion-title {
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: center; 
-  width: 100%; 
+  justify-content: center;
+  width: 100%;
 }
 
 .qr-text {
@@ -28,21 +29,23 @@ ion-title {
 
 .asistance-text {
   font-size: 1.5rem;
-  color: white;
-  border: 2px solid rgb(55, 241, 123, 0.938); 
+  color: var(--ion-text-color);  /* Texto dinámico */
+  border: 2px solid var(--ion-color-primary);  /* Borde dinámico */
   border-radius: 4px;
   padding: 2px 4px;
-  background-color: rgb(55, 241, 123, 0.938);
+  background-color: var(--ion-color-primary);  /* Fondo dinámico */
 }
 
+/* Estilos de la página de login */
 .login-page {
-  --background: rgb(43, 43, 43);
+  --background: var(--ion-background-color);  /* Fondo dinámico */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
+/* Estilos del contenedor de login */
 .login-container {
   width: 100%;
   max-width: 400px;
@@ -50,39 +53,39 @@ ion-title {
 }
 
 ion-card {
-  background-color: rgb(43, 43, 43);
+  background-color: var(--ion-background-color);  /* Fondo dinámico */
   border-radius: 15px;
   padding: 15px;
-  border: 2px solid rgb(55, 241, 123, 0.938);
-  color: white;
+  border: 2px solid var(--ion-color-primary);  /* Borde dinámico */
+  color: var(--ion-text-color);  /* Texto dinámico */
 }
 
 ion-item {
-  --background: white;
+  --background: var(--ion-background-color);  /* Fondo dinámico */
   --border-radius: 10px;
   margin-bottom: 20px;
-  --border-color: rgb(55, 241, 123, 0.938);
+  --border-color: var(--ion-color-primary);  /* Borde dinámico */
   --border-width: 2px;
   --border-style: solid;
 
   ion-label {
-    color: rgb(0, 0, 0);
+    color: var(--ion-text-color);  /* Texto dinámico */
   }
 
   ion-input {
-    color: #000;
+    color: var(--ion-text-color);  /* Texto dinámico */
     --border-radius: 10px;
     --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 }
 
 ion-button {
-  --background: rgb(0, 255, 94);
+  --background: var(--ion-color-success);  /* Fondo dinámico */
   --border-radius: 20px;
   transition: background 0.3s;
 
   &:hover {
-    --background: rgb(0, 194, 71);
+    --background: var(--ion-color-success-shade);  /* Fondo al hover dinámico */
   }
 }
 
@@ -93,7 +96,7 @@ ion-button {
 }
 
 .forgot-password a {
-  color: rgb(55, 241, 123, 0.938);
+  color: var(--ion-color-primary);  /* Color dinámico */
   text-decoration: underline;
   font-size: 0.9rem;
   margin-top: 10px;
@@ -117,16 +120,16 @@ ion-content {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  color: rgb(255, 255, 255);
-  background-color: rgba(0, 0, 0, 0.8); 
+  color: var(--ion-text-color);  /* Texto dinámico */
+  background-color: rgba(0, 0, 0, 0.8);
   font-size: 0.8rem;
   text-align: center;
-  border-top: 1px solid rgb(55, 241, 123, 0.938);
-  position: fixed; 
+  border-top: 1px solid var(--ion-color-primary);  /* Borde dinámico */
+  position: fixed;
   bottom: 0;
-  left: 0; 
-  right: 0; 
-  width: 100vw; 
-  box-sizing: border-box; 
+  left: 0;
+  right: 0;
+  width: 100vw;
+  box-sizing: border-box;
   z-index: 10;
 }

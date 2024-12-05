@@ -1,0 +1,76 @@
+ion-header {
+  --background: var(--ion-color-primary); /* Fondo dinámico */
+
+  ion-toolbar {
+    --background: var(--ion-color-primary); /* Fondo dinámico */
+  }
+
+  ion-title {
+    color: var(--ion-text-color); /* Texto dinámico */
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  ion-buttons {
+    ion-back-button {
+      color: var(--ion-text-color); /* Botón dinámico */
+    }
+  }
+}
+
+ion-content {
+  --background: var(--ion-background-color); /* Fondo dinámico */
+  padding: 16px;
+
+  ion-list {
+    margin-top: 10px;
+  }
+
+  ion-item {
+    background-color: var(--ion-background-color); /* Fondo dinámico */
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+
+    ion-label {
+      h2 {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--ion-text-color); /* Texto dinámico */
+        margin-bottom: 8px;
+      }
+
+      p {
+        font-size: 14px;
+        color: var(--ion-text-secondary); /* Color secundario dinámico */
+        margin: 4px 0;
+      }
+
+      strong {
+        color: var(--ion-text-color); /* Texto dinámico */
+      }
+    }
+  }
+
+  .no-data {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: var(--ion-text-secondary); /* Texto secundario dinámico */
+    background-color: var(--ion-background-color); /* Fondo dinámico */
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+}
+
+/* Personalización para el modo oscuro */
+.dark-theme {
+  ion-item {
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Sombra más clara */
+  }
+
+  .no-data {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo translúcido en modo oscuro */
+  }
+}

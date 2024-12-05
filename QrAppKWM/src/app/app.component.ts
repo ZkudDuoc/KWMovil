@@ -11,12 +11,27 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    localStorage.clear();
+    const userToken = localStorage.getItem('user-token');
     
-    this.router.navigate(['/login']);
+    if (!userToken) {
+      this.router.navigate(['/login']);  
+    } else {
+      this.router.navigate(['/home']);  
+    }
+
+    const darkMode = localStorage.getItem('dark-mode') === 'true';
+    if (darkMode) {
+      document.body.classList.add('dark-theme'); 
+    }
+  }
+
+  toggleDarkMode() {
+    const isDark = document.body.classList.toggle('dark-theme');
+    localStorage.setItem('dark-mode', isDark.toString());  
   }
 
   logout() {
+    localStorage.removeItem('user-token');
     this.router.navigate(['/login']);
   }
 }

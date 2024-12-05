@@ -1,60 +1,65 @@
+/* Estilos del ion-header */
 ion-header {
-  --background: rgb(55, 241, 123, 0.938); 
-  color: black;
+  --background: var(--ion-color-primary);  /* Fondo dinámico */
+  color: var(--ion-text-color);  /* Texto dinámico */
 }
 
 ion-toolbar {
-  --background: rgb(55, 241, 123, 0.938); 
+  --background: var(--ion-color-primary);  /* Fondo dinámico */
 }
 
 ion-title {
-  color: rgb(0, 0, 0);
+  color: var(--ion-text-color);  /* Texto dinámico */
   font-size: 1.2rem;
-  font-weight: normal; 
+  font-weight: normal;
   text-transform: uppercase;
-  
 }
 
 ion-back-button {
-  color: black; 
+  color: var(--ion-text-color);  /* Texto dinámico */
 }
 
-
+/* Estilos del ion-content */
 ion-content {
-  --background: rgb(43, 43, 43); 
+  --background: var(--ion-background-color);  /* Fondo dinámico */
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
+/* Estilos para el contenedor del error */
 .error-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: var(--ion-text-color);  /* Texto dinámico */
   padding: 20px;
 }
 
+/* Estilos de la imagen del error */
 .error-image {
   width: 120px;
   height: auto;
   margin-bottom: 20px;
 }
 
+/* Estilos del título 404 */
 h1 {
   font-size: 3rem;
-  color: rgb(255, 0, 0); 
+  color: var(--ion-color-danger);  /* Color dinámico para el error */
   margin: 10px 0;
 }
 
+/* Estilos del mensaje de error */
 p {
   font-size: 1.2rem;
-  color: rgb(200, 200, 200);
+  color: var(--ion-text-color);  /* Texto dinámico */
   max-width: 300px;
 }
 
+/* Estilo para el título condense */
 ion-header[collapse="condense"] ion-title {
   font-size: 2rem;
-  color: black;
+  color: var(--ion-text-color);  /* Texto dinámico */
 }

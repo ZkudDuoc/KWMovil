@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-    canActivate: [AuthGuard]  
+    canActivate: [AuthGuard]  // Protegido por el guard
   },
   {
     path: '',
@@ -20,12 +20,17 @@ const routes: Routes = [
   {
     path: 'horario',
     loadChildren: () => import('./pages/horario/horario.module').then(m => m.HorarioPageModule),
-    canActivate: [AuthGuard]  
+    canActivate: [AuthGuard]  // Protegido por el guard
   },
   {
     path: 'asistencia',
     loadChildren: () => import('./pages/asistencia/asistencia.module').then(m => m.AsistenciaPageModule),
-    canActivate: [AuthGuard]  
+    canActivate: [AuthGuard]  // Protegido por el guard
+  },
+  {
+    path: 'mis-asistencias',
+    loadChildren: () => import('./pages/mis-asistencias/mis-asistencias.module').then(m => m.MisAsistenciasPageModule),
+    canActivate: [AuthGuard]  // Protegido por el guard
   },
   {
     path: 'recu-contra',
@@ -33,11 +38,11 @@ const routes: Routes = [
   },
   {
     path: '404',
-    loadChildren: () => import('./pages/page-nf/page-nf.module').then(m => m.PageNFPageModule) 
+    loadChildren: () => import('./pages/page-nf/page-nf.module').then(m => m.PageNFPageModule)
   },
   {
     path: '**',
-    redirectTo: '404' 
+    redirectTo: '404'  // Redirige a 404 para rutas no encontradas
   }
 ];
 

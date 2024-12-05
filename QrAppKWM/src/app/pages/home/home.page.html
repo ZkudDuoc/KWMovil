@@ -1,18 +1,27 @@
 <ion-menu side="start" content-id="main-content" style="--background: rgba(55, 241, 123, 0.938);">
   <ion-header>
     <ion-toolbar style="--background: rgb(55, 241, 123, 0.938);">
-      <ion-title style="color: rgb(0, 0, 0);">Opciones</ion-title>
+      <ion-title>Opciones</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
+      <ion-item button routerLink="/mis-asistencias">
+        <ion-icon slot="start" name="list-outline"></ion-icon>
+        <ion-label>Mis Asistencias</ion-label>
+      </ion-item>  
+      <ion-item> 
+        <ion-button (click)="toggleDarkMode()">Alternar Modo Oscuro</ion-button>
+        <ion-icon slot="start" name="moon"></ion-icon>
+    </ion-item>
       <ion-item button (click)="confirmLogout()">
         <ion-icon slot="start" name="log-out-outline"></ion-icon>
         <ion-label>Cerrar sesión</ion-label>
-      </ion-item>      
+      </ion-item> 
     </ion-list>
   </ion-content>
 </ion-menu>
+
 <ion-header>
   <ion-toolbar style="--background: rgb(55, 241, 123, 0.938);">
     <ion-buttons slot="start">
@@ -39,7 +48,7 @@
   
   <ion-card *ngIf="clasesDelDia.length > 0">
     <ion-card-header>
-      <ion-card-title style="color: rgb(0, 0, 0);">Clases de Hoy</ion-card-title>
+      <ion-card-title>Clases de Hoy</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ul>
@@ -55,20 +64,21 @@
       <ion-card-title style="color: rgb(0, 0, 0);">No hay clases Hoy</ion-card-title>
     </ion-card-header>
   </ion-card>
-  
-  <div class="bottom-navigation" style="background-color: rgb(55, 241, 123, 0.938);">
-    <ion-button fill="clear" class="nav-item" routerLink="/asistencia">
-      <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
-    </ion-button>
-    <div class="center-item">
-      <ion-button class="center-button" fill="clear" (click)="openCamara()">
-        <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
-      </ion-button>
-    </div>
-    <ion-button fill="clear" class="nav-item" routerLink="/horario">
-      <ion-icon slot="icon-only" name="time-outline"></ion-icon>
+</ion-content>
+
+<div class="bottom-navigation" style="background-color: rgb(55, 241, 123, 0.938);">
+  <ion-button fill="clear" class="nav-item" routerLink="/asistencia">
+    <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
+  </ion-button>
+  <div class="center-item">
+    <ion-button class="center-button" fill="clear" (click)="openCamara()">
+      <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
     </ion-button>
   </div>
-</ion-content>
+  <ion-button fill="clear" class="nav-item" routerLink="/horario">
+    <ion-icon slot="icon-only" name="time-outline"></ion-icon>
+  </ion-button>
+</div>
+
 
 <script src="https://smtpjs.com/v3/smtp.js"></script>
