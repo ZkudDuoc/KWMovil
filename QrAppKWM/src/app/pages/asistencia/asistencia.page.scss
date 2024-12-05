@@ -1,65 +1,59 @@
 ion-content {
-  --background: rgb(43, 43, 43); 
+  --background: var(--ion-background-color);
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   gap: 1em;
   padding: 20px;
 }
 
-
 .asignatura-button {
   width: 100%;
   max-width: 400px;
   font-weight: bold;
-  --background: rgba(55, 241, 123, 0.938); 
-  --color: black; 
+  --background: var(--ion-color-primary); 
+  --color: var(--ion-text-color);
   margin-bottom: 10px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-
 
 ion-card {
   width: 100%;
   max-width: 400px;
-  background: linear-gradient(145deg, #2c2c2c, #3b3b3b); 
-  color: white;
+  background: var(--ion-background-color);  
+  color: var(--ion-text-color); 
   border-radius: 15px;
-  border: 2px solid rgba(55, 241, 123, 0.938); 
+  border: 2px solid var(--ion-color-primary);
   padding: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 
-
 ion-card-header {
-  background-color: rgba(55, 241, 123, 0.938); 
-  color: black;
+  background-color: var(--ion-color-primary);
+  color: var(--ion-text-color);
   padding: 15px;
   text-align: center;
   font-size: 1.4rem;
   font-weight: bold;
-  border-bottom: 3px solid rgb(43, 43, 43);
+  border-bottom: 3px solid var(--ion-text-color);
 }
-
 
 ion-card-content {
   padding: 20px;
-  color: white;
+  color: var(--ion-text-color);
   text-align: center;
   font-size: 1rem;
 }
-
 
 .details p {
   margin: 5px 0;
   font-size: 1rem;
   line-height: 1.5;
 }
-
 
 .progress-container {
   display: flex;
@@ -72,13 +66,12 @@ ion-progress-bar {
   flex: 1;
   height: 14px;
   border-radius: 10px;
-  --background: rgba(255, 255, 255, 0.1); 
-  --progress-background: rgb(55, 241, 123); 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+  --background: rgba(255, 255, 255, 0.1);
+  --progress-background: var(--ion-color-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
-
 .progress-label {
-  color: white;
+  color: var(--ion-text-color); 
   font-size: 0.9rem;
   font-weight: bold;
 }

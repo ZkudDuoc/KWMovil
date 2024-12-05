@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';  // Asegúrate de que esta ruta sea correcta
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { BarcodeScanner, BarcodeScanResult } from '@ionic-native/barcode-scanner/ngx';
@@ -9,6 +10,7 @@ import { PerfilService } from 'src/app/services/perfil.service';
 import axios from 'axios';
 import { ToastController } from '@ionic/angular';
 import { LoaderService } from '../../services/loader.service';
+import { AppComponent } from '../../app.component';  // Asegúrate de importar correctamente AppComponent
 
 @Component({
   selector: 'app-home',
@@ -53,7 +55,9 @@ export class HomePage implements OnInit {
     private storageService: StorageService,
     private toastController: ToastController,
     private loaderService: LoaderService,
-    private authService: AuthService
+    private authService: AuthService,
+    private sharedService: SharedService,
+    private appComponent: AppComponent  // Asegúrate de inyectar AppComponent para usar toggleDarkMode
   ) {
     this.setClasesDelDia();
   }
@@ -80,6 +84,12 @@ export class HomePage implements OnInit {
 
     await this.obtenerFotoPerfil();
     await this.loaderService.ocultarCargando();
+
+    // Verificar si el modo oscuro está habilitado en localStorage
+    const darkMode = localStorage.getItem('dark-mode') === 'true';
+    if (darkMode) {
+      document.body.classList.add('dark-theme');  // Aplicar modo oscuro globalmente si está habilitado
+    }
   }
 
   setClasesDelDia() {
@@ -101,16 +111,22 @@ export class HomePage implements OnInit {
 
   async openCamara() {
     const scanResult: BarcodeScanResult = await this.barcodeScanner.scan();
-
+  
     if (scanResult.text) {
       const content = scanResult.text.trim();
       console.log('Código escaneado:', content);
-
+  
       await this.loaderService.mostrarCargando('Procesando datos, por favor espera...');
       const regexFormatoQR = /^[A-Z0-9]+?\|[A-Z0-9]+?\|[A-Z0-9]+?\|\d{8}$/;
       await this.loaderService.ocultarCargando();
+      
       if (regexFormatoQR.test(content)) {
         const [asignatura, seccion, sala, fecha] = content.split('|');
+        const asistencia = { asignatura, seccion, sala, fecha };
+        
+        // Guarda los datos en SharedService
+        this.sharedService.setDatosQR(asistencia);
+  
         await this.mostrarAlerta(
           'Asistencia Registrada',
           `Asignatura: ${asignatura}\nSección: ${seccion}\nSala: ${sala}\nFecha: ${fecha}`
@@ -119,18 +135,6 @@ export class HomePage implements OnInit {
         console.error('Formato de código QR no válido');
         await this.mostrarToast('El código QR no tiene el formato esperado.');
       }
-
-      const position = await Geolocation.getCurrentPosition();
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-
-      const response = await axios.get(
-        `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`
-      );
-      const address = response.data.display_name;
-      console.log('Dirección:', address);
-
-      await this.mostrarToast(`Dirección: ${address}`);
     } else {
       console.error('No se pudo escanear el código');
       await this.mostrarToast('No se detectó ningún código.');
@@ -226,5 +230,22 @@ export class HomePage implements OnInit {
     window.addEventListener('click', reiniciarTimeout);
     window.addEventListener('keypress', reiniciarTimeout);
     reiniciarTimeout();
+  }
+
+  // NUEVO CÓDIGO AÑADIDO
+  async mostrarDatos() {
+    try {
+      const usuario = await this.storageService.get('usuario');
+      console.log('Datos del usuario:', usuario);
+    } catch (error) {
+      console.error('Error al obtener datos del usuario:', error);
+    }
+  }
+
+  // Método para alternar entre el modo oscuro y claro
+  toggleDarkMode() {
+    document.body.classList.toggle('dark-theme');  // Alterna la clase dark-theme en el body
+    const isDark = document.body.classList.contains('dark-theme');
+    localStorage.setItem('dark-mode', isDark.toString());  // Guarda la preferencia en localStorage
   }
 }

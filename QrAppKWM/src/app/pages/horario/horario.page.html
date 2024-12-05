@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="--background: rgb(55, 241, 123, 0.938);">
-    <ion-title bold >Horario</ion-title>
+  <ion-toolbar style="--background: var(--ion-color-primary);">
+    <ion-title>Horario</ion-title>
     <ion-buttons slot="end">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -23,14 +23,12 @@
     <h2>{{ diaActual }}</h2>
   </div>
 
-
   <div class="clases">
     <div *ngFor="let clase of horario[diaActual]" class="clase">
       <div class="hora">{{ clase.hora }}</div>
       <div class="materia">{{ clase.clase }}</div>
     </div>
   </div>
-
 
   <div class="navegacion">
     <ion-icon
